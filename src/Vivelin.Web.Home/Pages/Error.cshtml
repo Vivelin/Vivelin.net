@@ -4,11 +4,11 @@
     ViewData["Title"] = "Error";
 }
 
-<h1>Error</h1>
-<p>An error occurred while processing your request.</p>
+<p class="page-message">An error occurred while processing your request.</p>
 
-@if (Model.ShowRequestId)
+@if (Model.ShowDetails)
 {
+    <pre>@Model.ExceptionMessage</pre>
     <aside>
         <p>
             <strong>Request ID:</strong> <code>@Model.RequestId</code>

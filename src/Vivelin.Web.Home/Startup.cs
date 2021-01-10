@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -29,14 +30,8 @@ namespace Vivelin.Web.Home
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Error");
-            }
+            app.UseExceptionHandler("/Error");
+            app.UseStatusCodePagesWithReExecute("/Error");
 
             app.UseStaticFiles();
             app.UseRouting();
@@ -44,6 +39,7 @@ namespace Vivelin.Web.Home
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                endpoints.Map("/1234", x => throw new FileNotFoundException("asdf"));
             });
         }
     }
