@@ -2,6 +2,14 @@
   --background-color: #18181f;
   --foreground-color: #dedede;
   --muted-color: #818181;
+  /* Green */
+  --primary-color: #8fc045;
+  --primary-lighter-color: #b4e26f;
+  --primary-darker-color: #719140;
+  /* Pink */
+/*  --primary-color: #ff2e7e;
+  --primary-lighter-color: #ff7aad;
+  --primary-darker-color: #ed0c63;*/
   --ui-font: 'IBM Plex Sans Condensed', sans-serif;
   --text-font: Literata, serif;
   --page-width: 70rem;
@@ -94,10 +102,16 @@ main aside p {
   font-size: 1em;
 }
 
-nav a,
-.site-title a {
+.site-title a,
+.site-title a:visited {
   color: var(--foreground-color);
+  transition: color .3s ease-in;
+}
+
+.site-title a:hover {
+  color: var(--primary-color);
   text-decoration: none;
+  transition: color .1s ease-out;
 }
 
 nav ul {
@@ -124,6 +138,22 @@ h1 { font-size: 3rem; }
 h2 { 
   font-size: 2rem;     
   border-bottom: 1px solid var(--muted-color);
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color .3s ease-in;
+}
+
+a:visited {
+  color: var(--primary-darker-color);
+}
+
+a:hover {
+  color: var(--primary-lighter-color);
+  text-decoration: underline;
+  transition: color .1s ease-out;
 }
 
 .page-message {
