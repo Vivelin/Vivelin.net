@@ -23,6 +23,7 @@ html {
   color: var(--foreground-color);
   font-family: var(--text-font);
   font-size: 1.2rem;
+  line-height: 1.6;
 }
 
 body {
@@ -52,7 +53,8 @@ body {
 main {
   display: grid;
   grid-template-columns: minmax(0, 3fr) 2fr;
-  grid-gap: 1em;
+  column-gap: 1em;
+  row-gap: 1.5em;
   margin: 1em auto;
   max-width: var(--page-width);
 }
@@ -64,15 +66,22 @@ main h2 {
 }
 
 /* Content elements */
-main p {
+main * {
   grid-column: 1;
+  margin: 0;
+}
+
+main p {
   text-align: justify;
 }
 
 main pre {
-  grid-column: 1;
   white-space: pre-wrap;
   overflow: auto;
+}
+
+main li {
+  margin: .5em;
 }
 
 /* Aside elements */
@@ -81,6 +90,7 @@ main aside {
   border-left: 1px solid var(--muted-color);
   color: var(--muted-color);
   padding-left: 1em;
+  font-family: var(--ui-font);
 }
 
 main aside p {
