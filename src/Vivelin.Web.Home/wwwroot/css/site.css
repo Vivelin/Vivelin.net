@@ -1,12 +1,15 @@
 ﻿:root {
   --background-color: #18181f;
   --foreground-color: #dedede;
+  --muted-color: #818181;
+  --ui-font: 'IBM Plex Sans Condensed', sans-serif;
+  --text-font: Literata, serif;
 }
 
 html {
   background-color: var(--background-color);
   color: var(--foreground-color);
-  font-family: Literata, serif;
+  font-family: var(--text-font);
   font-size: 1.2rem;
 }
 
@@ -15,6 +18,9 @@ body {
 }
 
 main {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  grid-gap: 1em;
   margin: 0 auto;
   max-width: 120ch;
 }
@@ -25,12 +31,24 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: var(--ui-font);
 }
 
 .page-message {
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: var(--ui-font);
   font-size: 3em;
   margin: 3em 0;
   text-align: center;
+}
+
+main p {
+  grid-column: 1 / 2;
+  text-align: justify;
+}
+
+main aside {
+  grid-column: 2 / 3;
+  border-left: 1px solid var(--muted-color);
+  color: var(--muted-color);
+  padding-left: 1em;
 }
