@@ -1,0 +1,36 @@
+﻿:root {
+  --background-color: #18181f;
+  --foreground-color: #dedede;
+}
+
+html {
+  background-color: var(--background-color);
+  color: var(--foreground-color);
+  font-family: Literata, serif;
+  font-size: 1.2rem;
+}
+
+body {
+  margin: 1em;
+}
+
+main {
+  margin: 0 auto;
+  max-width: 120ch;
+}
+
+h1, 
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.page-message {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 3em;
+  margin: 3em 0;
+  text-align: center;
+}
