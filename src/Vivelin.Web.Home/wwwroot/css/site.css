@@ -176,3 +176,13 @@ a:hover {
   margin: 3em 0;
   text-align: center;
 }
+
+.avatar {
+  border-radius: 3px;
+}
+
+img.inline {
+  max-height: 1.25em;
+  vertical-align: text-top;
+  margin-right: .25em;
+}
