@@ -1,11 +1,12 @@
 ﻿:root {
-  --background-color: #18181f;
-  --foreground-color: #dedede;
-  --muted-color: #818181;
+  --page-background: #18181f;
+  --page-background-secondary: #23232e;
+  --page-text: #dedede;
+  --page-text-secondary: #818181;
   /* Green */
-  --primary-color: #8fc045;
-  --primary-lighter-color: #b4e26f;
-  --primary-darker-color: #719140;
+  --page-accent: #8fc045;
+  --page-accent-light: #b4e26f;
+  --page-accent-dark: #719140;
   /* Pink */
 /*  --primary-color: #ff2e7e;
   --primary-lighter-color: #ff7aad;
@@ -19,8 +20,8 @@
  * Page styles
  */
 html {
-  background-color: var(--background-color);
-  color: var(--foreground-color);
+  background-color: var(--page-background);
+  color: var(--page-text);
   font-family: var(--text-font);
   font-size: 1.2rem;
   line-height: 1.6;
@@ -36,6 +37,8 @@ body {
 .page-header {
   display: grid;
   grid-template-columns: 1fr var(--page-width) 1fr;
+  background-color: var(--page-background-secondary);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
 }
 
 .page-header h1 {
@@ -87,8 +90,8 @@ main li {
 /* Aside elements */
 main aside {
   grid-column: 2;
-  border-left: 1px solid var(--muted-color);
-  color: var(--muted-color);
+  border-left: 1px solid var(--page-text-secondary);
+  color: var(--page-text-secondary);
   padding-left: 1em;
   font-family: var(--ui-font);
 }
@@ -114,12 +117,12 @@ main aside p {
 
 .site-title a,
 .site-title a:visited {
-  color: var(--foreground-color);
+  color: var(--page-text);
   transition: color .3s ease-in;
 }
 
 .site-title a:hover {
-  color: var(--primary-color);
+  color: var(--page-accent);
   text-decoration: none;
   transition: color .1s ease-out;
 }
@@ -147,21 +150,21 @@ h6 {
 h1 { font-size: 3rem; }
 h2 { 
   font-size: 2rem;     
-  border-bottom: 1px solid var(--muted-color);
+  border-bottom: 1px solid var(--page-text-secondary);
 }
 
 a {
-  color: var(--primary-color);
+  color: var(--page-accent);
   text-decoration: none;
   transition: color .3s ease-in;
 }
 
 a:visited {
-  color: var(--primary-darker-color);
+  color: var(--page-accent-dark);
 }
 
 a:hover {
-  color: var(--primary-lighter-color);
+  color: var(--page-accent-light);
   text-decoration: underline;
   transition: color .1s ease-out;
 }
