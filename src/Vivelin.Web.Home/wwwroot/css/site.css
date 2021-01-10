@@ -4,8 +4,12 @@
   --muted-color: #818181;
   --ui-font: 'IBM Plex Sans Condensed', sans-serif;
   --text-font: Literata, serif;
+  --page-width: 70rem;
 }
 
+/**
+ * Page styles
+ */
 html {
   background-color: var(--background-color);
   color: var(--foreground-color);
@@ -14,17 +18,93 @@ html {
 }
 
 body {
-  margin: 1em;
+  margin: 0;
+}
+
+/**
+ * Grid layout
+ */
+.page-header {
+  display: grid;
+  grid-template-columns: 1fr var(--page-width) 1fr;
+}
+
+.page-header h1 {
+  grid-column: 1;
+}
+
+.page-header nav {
+  grid-column: 2;
+}
+
+.page-header form {
+  grid-column: 3;
 }
 
 main {
   display: grid;
   grid-template-columns: 3fr 2fr;
   grid-gap: 1em;
-  margin: 0 auto;
-  max-width: 120ch;
+  margin: 1em auto;
+  max-width: var(--page-width);
 }
 
+/* Spanning elements */
+main h1,
+main h2 {
+  grid-column: span 2;
+}
+
+/* Content elements */
+main p {
+  grid-column: 1;
+  text-align: justify;
+}
+
+/* Aside elements */
+main aside {
+  grid-column: 2;
+  border-left: 1px solid var(--muted-color);
+  color: var(--muted-color);
+  padding-left: 1em;
+}
+
+main aside p {
+  text-align: left;
+}
+
+/**
+  * Nav
+  */
+.page-header {
+  font-family: var(--ui-font);
+  font-size: 1.2em;
+  font-weight: 300;
+  padding: 1rem;
+}
+
+.site-title {
+  margin: 0;
+  font-size: 1em;
+}
+
+nav a,
+.site-title a {
+  color: var(--foreground-color);
+  text-decoration: none;
+}
+
+nav ul {
+  display: flex;
+  gap: 1em;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/**
+ * Elements & Typography
+ */
 h1, 
 h2,
 h3,
@@ -34,21 +114,16 @@ h6 {
   font-family: var(--ui-font);
 }
 
+h1 { font-size: 3rem; }
+h2 { 
+  font-size: 2rem;     
+  border-bottom: 1px solid var(--muted-color);
+}
+
 .page-message {
+  grid-column: span 2;
   font-family: var(--ui-font);
   font-size: 3em;
   margin: 3em 0;
   text-align: center;
-}
-
-main p {
-  grid-column: 1 / 2;
-  text-align: justify;
-}
-
-main aside {
-  grid-column: 2 / 3;
-  border-left: 1px solid var(--muted-color);
-  color: var(--muted-color);
-  padding-left: 1em;
 }
