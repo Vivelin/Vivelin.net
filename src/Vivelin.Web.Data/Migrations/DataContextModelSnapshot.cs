@@ -25,8 +25,13 @@ namespace Vivelin.Web.Data.Migrations
                     b.Property<string>("Author")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
+                    b.Property<int?>("PageNumber")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("PublicationYear")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Publisher")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Source")
@@ -43,25 +48,6 @@ namespace Vivelin.Web.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Quotes");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Quote");
-                });
-
-            modelBuilder.Entity("Vivelin.Web.Data.BookQuote", b =>
-                {
-                    b.HasBaseType("Vivelin.Web.Data.Quote");
-
-                    b.Property<int?>("PageNumber")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("PublicationYear")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Publisher")
-                        .HasColumnType("TEXT");
-
-                    b.HasDiscriminator().HasValue("BookQuote");
                 });
 #pragma warning restore 612, 618
         }

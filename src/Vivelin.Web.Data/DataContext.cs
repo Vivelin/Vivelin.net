@@ -15,8 +15,6 @@ namespace Vivelin.Web.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Quote>();
-            modelBuilder.Entity<BookQuote>();
         }
     }
 }

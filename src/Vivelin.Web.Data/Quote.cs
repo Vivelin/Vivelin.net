@@ -38,5 +38,20 @@ namespace Vivelin.Web.Data
         /// Gets or sets a link to the source of the quote.
         /// </summary>
         public Uri? SourceHref { get; set; }
+
+        /// <summary>
+        /// Gets or sets the name of the publisher, if any,
+        /// </summary>
+        public string? Publisher { get; set; }
+
+        /// <summary>
+        /// Gets or sets the page number on which the quote can be found.
+        /// </summary>
+        public int? PageNumber { get; set; }
+
+        /// <summary>
+        /// Gets or sets the year of publication, if any.
+        /// </summary>
+        public string? PublicationYear { get; set; }
     }
 }

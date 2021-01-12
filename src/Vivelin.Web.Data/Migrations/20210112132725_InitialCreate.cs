@@ -16,7 +16,6 @@ namespace Vivelin.Web.Data.Migrations
                     Author = table.Column<string>(type: "TEXT", nullable: true),
                     Source = table.Column<string>(type: "TEXT", nullable: false),
                     SourceHref = table.Column<string>(type: "TEXT", nullable: true),
-                    Discriminator = table.Column<string>(type: "TEXT", nullable: false),
                     Publisher = table.Column<string>(type: "TEXT", nullable: true),
                     PageNumber = table.Column<int>(type: "INTEGER", nullable: true),
                     PublicationYear = table.Column<string>(type: "TEXT", nullable: true)
