@@ -25,18 +25,27 @@
         <input asp-for="Quote.Author" />
         <p><span asp-validation-for="Quote.Author" class="error-message"></span></p>
     </div>
+    <aside>
+        <p>The author of the work that contains the quote, or the person that says it.</p>
+    </aside>
 
     <div>
         <p><label asp-for="Quote.Source">Source:</label></p>
         <input asp-for="Quote.Source" />
         <p><span asp-validation-for="Quote.Source" class="error-message"></span></p>
     </div>
+    <aside>
+        <p>The source of the quote, e.g. the title of a book or name of a video game.</p>
+    </aside>
 
     <div>
         <p><label asp-for="Quote.SourceHref">Source URL (optional):</label></p>
         <input type="url" asp-for="Quote.SourceHref" />
         <p><span asp-validation-for="Quote.SourceHref" class="error-message"></span></p>
     </div>
+    <aside>
+        <p>A link to the source or a video showing the quote.</p>
+    </aside>
 
     <div>
         <p><label asp-for="Quote.Publisher">Publisher (optional):</label></p>
