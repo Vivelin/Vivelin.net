@@ -1,0 +1,72 @@
+﻿@page
+@model Vivelin.Web.Home.Pages.Admin.Quotes.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Quote[0].Text)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quote[0].Author)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quote[0].Source)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quote[0].SourceHref)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quote[0].Publisher)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quote[0].PageNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quote[0].PublicationYear)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Quote) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Text)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Source)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SourceHref)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Publisher)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PageNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PublicationYear)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
