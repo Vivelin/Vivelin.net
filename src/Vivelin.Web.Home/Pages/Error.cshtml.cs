@@ -42,5 +42,19 @@ namespace Vivelin.Web.Home.Pages
                 }
             }
         }
+
+        public void OnPost()
+        {
+            RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
+
+            if (_environment.IsDevelopment())
+            {
+                var exceptionHandler = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
+                if (exceptionHandler != null)
+                {
+                    ExceptionMessage = exceptionHandler.Error.ToString();
+                }
+            }
+        }
     }
 }

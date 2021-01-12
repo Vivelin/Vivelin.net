@@ -1,16 +1,13 @@
 ﻿:root {
   --page-background: #18181f;
   --page-background-secondary: #23232e;
+  --page-border: #0d0d11;
   --page-text: #dedede;
   --page-text-secondary: #818181;
-  /* Green */
   --page-accent: #8fc045;
   --page-accent-light: #b4e26f;
   --page-accent-dark: #719140;
-  /* Pink */
-/*  --primary-color: #ff2e7e;
-  --primary-lighter-color: #ff7aad;
-  --primary-darker-color: #ed0c63;*/
+  --page-warning: #fbc02d;
   --ui-font: 'IBM Plex Sans Condensed', sans-serif;
   --text-font: Literata, serif;
   --page-width: 70rem;
@@ -53,7 +50,7 @@ body {
   grid-column: 3;
 }
 
-main {
+.main {
   display: grid;
   grid-template-columns: minmax(0, 3fr) 2fr;
   column-gap: 1em;
@@ -63,32 +60,33 @@ main {
 }
 
 /* Spanning elements */
-main h1,
-main h2 {
+.main h1,
+.main h2,
+.main form {
   grid-column: span 2;
 }
 
 /* Content elements */
-main * {
+.main * {
   grid-column: 1;
   margin: 0;
 }
 
-main p {
+.main p {
   text-align: justify;
 }
 
-main pre {
+.main pre {
   white-space: pre-wrap;
   overflow: auto;
 }
 
-main li {
+.main li {
   margin: .5em;
 }
 
 /* Aside elements */
-main aside {
+.main aside {
   grid-column: 2;
   border-left: 1px solid var(--page-text-secondary);
   color: var(--page-text-secondary);
@@ -96,7 +94,7 @@ main aside {
   font-family: var(--ui-font);
 }
 
-main aside p {
+.main aside p {
   text-align: left;
 }
 
@@ -138,7 +136,7 @@ nav ul {
 /**
  * Elements & Typography
  */
-h1, 
+h1,
 h2,
 h3,
 h4,
@@ -147,12 +145,18 @@ h6 {
   font-family: var(--ui-font);
 }
 
-h1 { font-size: 3rem; }
-h2 { 
-  font-size: 1.8rem;     
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 1.8rem;
   border-bottom: 1px solid var(--page-text-secondary);
 }
-h3 { font-size: 1.6rem; }
+
+h3 {
+  font-size: 1.6rem;
+}
 
 a {
   color: var(--page-accent);
@@ -186,4 +190,104 @@ img.inline {
   max-height: 1.25em;
   vertical-align: text-top;
   margin-right: .25em;
+}
+
+/**
+ * Forms
+ */
+form {
+  font-family: var(--ui-font);
+}
+
+label {
+  font-weight: 600;
+  margin-left: 2px !important;
+}
+
+input[type=text],
+input[type=url],
+input[type=number],
+textarea {
+  background-color: var(--page-background-secondary);
+  border: 1px solid var(--page-border);
+  border-radius: 3px;
+  color: var(--page-text);
+  font-family: var(--ui-font);
+  font-size: 1rem;
+  max-width: 100%;
+  padding: .25em .5em;
+}
+
+input[type=text]:focus,
+input[type=url]:focus,
+input[type=number]:focus,
+textarea:focus {
+  outline: none;
+  box-shadow: 0 0 3px 1px var(--page-accent);
+}
+
+input[type=text] {
+  width: 12rem;
+}
+
+input[type=url] {
+  width: 24rem;
+}
+
+input[type=number] {
+  width: 4rem;
+}
+
+textarea {
+  font-family: monospace;
+  height: 12rem;
+  width: 36rem;
+}
+
+.error-message {
+  color: var(--page-warning);
+  font-style: italic;
+}
+
+input[type=button],
+input[type=submit],
+button,
+.link-button {
+  background-color: transparent;
+  border: 1px solid var(--page-accent);
+  border-radius: 3px;
+  color: var(--page-accent);
+  cursor: pointer;
+  font-family: var(--ui-font);
+  font-weight: 600;
+  font-size: 1rem;
+  padding: .5em 1em;
+  min-width: 5rem;
+}
+
+input[type=submit] {
+  background-color: var(--page-accent);
+  color: black;
+}
+
+input[type=submit]:hover {
+  background-color: var(--page-accent-light);
+}
+
+input[type=submit]:active {
+  background-color: var(--page-accent-dark);
+}
+
+input[type=button]:hover,
+button:hover,
+.link-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  text-decoration: none;
+}
+
+input[type=button]:active,
+button:active,
+.link-button:active {
+  background-color: rgba(0, 0, 0, 0.1);
+  text-decoration: none;
 }
