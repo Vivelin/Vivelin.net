@@ -60,23 +60,23 @@ body {
 }
 
 /* Spanning elements */
-.main h1,
-.main h2,
-.main form {
+.main > h1,
+.main > h2,
+.main > form {
   grid-column: span 2;
 }
 
 /* Content elements */
-.main * {
+.main > * {
   grid-column: 1;
   margin: 0;
 }
 
-.main p {
+.main > p {
   text-align: justify;
 }
 
-.main pre {
+.main > pre {
   white-space: pre-wrap;
   overflow: auto;
 }
@@ -172,6 +172,11 @@ a:hover {
   color: var(--page-accent-light);
   text-decoration: underline;
   transition: color .1s ease-out;
+}
+
+.quote blockquote {
+  margin-left: 0;
+  text-align: justify;
 }
 
 .quote figcaption {
@@ -282,6 +287,7 @@ button,
   padding: .5em 1em;
   min-width: 3rem;
   line-height: 1.4;
+  transition: background-color .2s;
 }
 
 input[type=submit] {
@@ -312,9 +318,14 @@ button:active,
 }
 
 input[type=button].warning,
-input[type=submit].warning,
 button.warning,
 .link-button.warning {
   border-color: var(--page-warning);
   color: var(--page-warning);
+}
+
+input[type=submit].warning {
+  background-color: var(--page-warning);
+  border-color: var(--page-warning);
+  color: black;
 }
