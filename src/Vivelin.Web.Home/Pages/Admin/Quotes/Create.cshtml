@@ -1,11 +1,7 @@
-﻿@page
+﻿@page "{id:int?}"
 @model Vivelin.Web.Home.Pages.Admin.Quotes.CreateModel
 
-@{
-    ViewData["Title"] = "Create";
-}
-
-<h1>New quote</h1>
+<h1>@ViewData["Title"]</h1>
 
 <form class="main" method="post">
     <div asp-validation-summary="ModelOnly" class="error-message"></div>
@@ -66,7 +62,7 @@
     </div>
 
     <p>
-        <input type="submit" value="Add" />
+        <input type="submit" value="@( Model.IsNew ? "Add" : "Save" )" />
         <a asp-page="Index" class="link-button">Cancel</a>
     </p>
 </form>
