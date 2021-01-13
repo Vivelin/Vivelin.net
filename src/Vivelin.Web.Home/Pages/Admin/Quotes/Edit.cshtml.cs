@@ -12,11 +12,11 @@ using Vivelin.Web.Data;
 
 namespace Vivelin.Web.Home.Pages.Admin.Quotes
 {
-    public class CreateModel : PageModel
+    public class EditModel : PageModel
     {
         private readonly Vivelin.Web.Data.DataContext _context;
 
-        public CreateModel(Vivelin.Web.Data.DataContext context)
+        public EditModel(Vivelin.Web.Data.DataContext context)
         {
             _context = context;
         }
