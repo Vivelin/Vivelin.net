@@ -2,13 +2,13 @@
 @model Vivelin.Web.Home.Pages.Admin.Quotes.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Quote management";
 }
 
 <h1>Quote management</h1>
 
 <p>
-    <a asp-page="Create" class="link-button">Add new quote</a>
+    <a asp-page="Edit" class="link-button">Add new quote</a>
 </p>
 
 @foreach (var item in Model.Quote)
@@ -19,7 +19,7 @@
                param-Quote="item" />
     <aside>
         <p>
-            <a asp-page="./Create" asp-route-id="@item.Id" class="link-button">Edit</a>
+            <a asp-page="./Edit" asp-route-id="@item.Id" class="link-button">Edit</a>
             <a asp-page="./Delete" asp-route-id="@item.Id" class="link-button warning">Delete</a>
         </p>
     </aside>

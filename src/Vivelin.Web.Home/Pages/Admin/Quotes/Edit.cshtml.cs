@@ -34,7 +34,7 @@ namespace Vivelin.Web.Home.Pages.Admin.Quotes
                 return Page();
             }
 
-            Quote = await _context.Quotes.FirstOrDefaultAsync(m => m.Id == id);
+            Quote = await _context.Quotes.SingleOrDefaultAsync(m => m.Id == id);
             if (Quote == null)
             {
                 return NotFound();
@@ -47,6 +47,11 @@ namespace Vivelin.Web.Home.Pages.Admin.Quotes
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
+            if (IsNew)
+            {
+                ModelState["Quote.Id"].ValidationState = ModelValidationState.Skipped;
+            }
+
             if (Quote == null || !ModelState.IsValid)
             {
                 return Page();
