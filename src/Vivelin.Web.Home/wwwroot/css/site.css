@@ -8,7 +8,7 @@
   --page-accent-light: #b4e26f;
   --page-accent-dark: #719140;
   --page-warning: #fbc02d;
-  --ui-font: 'IBM Plex Sans Condensed', sans-serif;
+  --ui-font: Barlow, sans-serif;
   --text-font: Literata, serif;
   --page-width: 70rem;
 }
