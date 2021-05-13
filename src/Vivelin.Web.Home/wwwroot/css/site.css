@@ -7,7 +7,9 @@
   --page-accent: #8fc045;
   --page-accent-light: #b4e26f;
   --page-accent-dark: #719140;
+  --page-accent-contrast: #18181f;
   --page-warning: #fbc02d;
+  --page-warning-contrast: #18181f;
   --ui-font: Barlow, sans-serif;
   --text-font: Literata, serif;
   --page-width: 70rem;
@@ -175,6 +177,10 @@ a:hover {
   transition: color .1s ease-out;
 }
 
+strong {
+  font-weight: 800;
+}
+
 .quote blockquote {
   margin: 0;
   text-align: justify;
@@ -239,7 +245,7 @@ input[type=url],
 input[type=number],
 textarea {
   background-color: var(--page-background-secondary);
-  border: 1px solid var(--page-border);
+  border: 1px solid transparent;
   border-radius: 3px;
   color: var(--page-text);
   font-family: var(--ui-font);
@@ -257,11 +263,11 @@ textarea:focus {
 }
 
 input[type=text] {
-  width: 12rem;
+  width: 18rem;
 }
 
 input[type=url] {
-  width: 24rem;
+  width: 32rem;
 }
 
 input[type=number] {
@@ -301,7 +307,7 @@ button,
 
 input[type=submit] {
   background-color: var(--page-accent);
-  color: black;
+  color: var(--page-accent-contrast);
 }
 
 input[type=submit]:hover {
@@ -336,5 +342,5 @@ button.warning,
 input[type=submit].warning {
   background-color: var(--page-warning);
   border-color: var(--page-warning);
-  color: black;
+  color: var(--page-warning-contrast);
 }
