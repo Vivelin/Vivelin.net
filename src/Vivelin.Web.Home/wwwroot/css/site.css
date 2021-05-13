@@ -240,6 +240,10 @@ label {
   margin-left: 2px !important;
 }
 
+label .inline-hint {
+  font-weight: 400;
+}
+
 input[type=text],
 input[type=url],
 input[type=number],
@@ -282,7 +286,6 @@ textarea {
 
 .error-message {
   color: var(--page-warning);
-  font-style: italic;
 }
 
 input[type=button],
@@ -303,6 +306,7 @@ button,
   min-width: 3rem;
   line-height: 1.4;
   transition: background-color .2s;
+  user-select: none;
 }
 
 input[type=submit] {

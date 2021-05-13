@@ -18,7 +18,7 @@
     </aside>
 
     <div class="form-control">
-        <div><label asp-for="Quote.Author">Author (optional):</label></div>
+        <div><label asp-for="Quote.Author">Author <span class="inline-hint">(optional)</span>:</label></div>
         <input asp-for="Quote.Author" />
         <p><span asp-validation-for="Quote.Author" class="error-message"></span></p>
     </div>
@@ -36,7 +36,7 @@
     </aside>
 
     <div class="form-control">
-        <div><label asp-for="Quote.SourceHref">Source URL (optional):</label></div>
+        <div><label asp-for="Quote.SourceHref">Source URL <span class="inline-hint">(optional)</span>:</label></div>
         <input type="url" asp-for="Quote.SourceHref" />
         <p><span asp-validation-for="Quote.SourceHref" class="error-message"></span></p>
     </div>
@@ -45,19 +45,19 @@
     </aside>
 
     <div class="form-control">
-        <div><label asp-for="Quote.Publisher">Publisher (optional):</label></div>
+        <div><label asp-for="Quote.Publisher">Publisher <span class="inline-hint">(optional)</span>:</label></div>
         <input asp-for="Quote.Publisher" />
         <p><span asp-validation-for="Quote.Publisher" class="error-message"></span></p>
     </div>
 
     <div class="form-control">
-        <div><label asp-for="Quote.PageNumber">Page number (optional):</label></div>
+        <div><label asp-for="Quote.PageNumber">Page number <span class="inline-hint">(optional)</span>:</label></div>
         <input asp-for="Quote.PageNumber" />
         <p><span asp-validation-for="Quote.PageNumber" class="error-message"></span></p>
     </div>
 
     <div class="form-control">
-        <div><label asp-for="Quote.PublicationYear">Publication year (optional):</label></div>
+        <div><label asp-for="Quote.PublicationYear">Publication year <span class="inline-hint">(optional)</span>:</label></div>
         <input asp-for="Quote.PublicationYear" />
         <p><span asp-validation-for="Quote.PublicationYear" class="error-message"></span></p>
     </div>
