@@ -1,3 +1,4 @@
+using System;
 using AspNet.Security.OAuth.Twitch;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -7,14 +8,6 @@ using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-
 using Vivelin.Web.Data;
 using Vivelin.Web.Home.Authentication;
 
@@ -29,7 +22,8 @@ namespace Vivelin.Web.Home
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        // This method gets called by the runtime. Use this method to add
+        // services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services
@@ -41,13 +35,15 @@ namespace Vivelin.Web.Home
                 .AddCookie(options =>
                 {
                     options.Cookie.HttpOnly = true;
-                    options.Cookie.SameSite = SameSiteMode.Strict;
+                    options.Cookie.SameSite = SameSiteMode.Lax;
                 })
                 .AddTwitch(options =>
                 {
                     options.ClientId = Configuration["Twitch:ClientId"];
                     options.ClientSecret = Configuration["Twitch:ClientSecret"];
                     options.SaveTokens = true;
+                    options.Scope.Add("user:read:follows");
+                    options.Scope.Add("user:read:subscriptions");
                 });
 
             services.AddAuthorization(options =>
@@ -78,13 +74,20 @@ namespace Vivelin.Web.Home
                 options.UseSqlite(connectionString);
             });
 
+            services.AddHttpClient("api.twitch.tv", client =>
+            {
+                client.BaseAddress = new Uri("https://api.twitch.tv/helix/");
+                client.DefaultRequestHeaders.Add("client-id", Configuration["Twitch:ClientId"]);
+            });
+
             services.AddSingleton(new TwitchTokenClient(
-                Configuration["Twitch:ClientId"], 
+                Configuration["Twitch:ClientId"],
                 Configuration["Twitch:ClientSecret"]));
             services.AddSingleton<TwitchAuthenticationEvents>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        // This method gets called by the runtime. Use this method to configure
+        // the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseExceptionHandler("/Error");
