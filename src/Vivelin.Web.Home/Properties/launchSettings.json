@@ -1,4 +1,4 @@
-﻿{
+{
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
@@ -17,18 +17,18 @@
     },
     "Vivelin.Web.Home": {
       "commandName": "Project",
-      "dotnetRunMessages": "true",
       "launchBrowser": true,
-      "applicationUrl": "http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      },
+      "dotnetRunMessages": "true",
+      "applicationUrl": "https://localhost:5001"
     },
     "Watch": {
       "commandName": "Executable",
       "executablePath": "dotnet.exe",
-      "workingDirectory": "$(ProjectDir)",
       "commandLineArgs": "watch run",
+      "workingDirectory": "$(ProjectDir)",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

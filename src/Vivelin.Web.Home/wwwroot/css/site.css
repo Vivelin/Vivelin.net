@@ -40,7 +40,11 @@ body {
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
 }
 
-.page-header h1 {
+.page-header p {
+  margin: 0;
+}
+
+.page-header .site-title {
   grid-column: 1;
 }
 
@@ -48,8 +52,14 @@ body {
   grid-column: 2;
 }
 
-.page-header form {
+.page-header .user-info {
   grid-column: 3;
+  justify-self: end;
+}
+
+.page-header .user-info input[type=submit],
+.page-header .user-info a {
+  margin-left: .75em;
 }
 
 .main {
@@ -309,26 +319,6 @@ button,
   user-select: none;
 }
 
-input[type=submit] {
-  background-color: var(--page-accent);
-  color: var(--page-accent-contrast);
-}
-
-input[type=submit]:hover {
-  background-color: var(--page-accent-light);
-}
-
-input[type=submit]:active {
-  background-color: var(--page-accent-dark);
-}
-
-input[type=button]:hover,
-button:hover,
-.link-button:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  text-decoration: none;
-}
-
 input[type=button]:active,
 button:active,
 .link-button:active {
@@ -343,8 +333,55 @@ button.warning,
   color: var(--page-warning);
 }
 
+input[type=button]:hover,
+button:hover,
+.link-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  text-decoration: none;
+}
+
+input[type=submit],
+.link-button.primary {
+  background-color: var(--page-accent);
+  color: var(--page-accent-contrast);
+}
+
+input[type=submit]:hover,
+.link-button.primary:hover {
+  background-color: var(--page-accent-light);
+}
+
+input[type=submit]:active,
+.link-button.primary:active {
+  background-color: var(--page-accent-dark);
+}
+
 input[type=submit].warning {
   background-color: var(--page-warning);
   border-color: var(--page-warning);
   color: var(--page-warning-contrast);
+}
+
+input[type=submit].secondary {
+  background: none;
+  border: none;
+  border-radius: 0;
+  color: var(--page-accent);
+  cursor: pointer;
+  display: inline;
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+  text-align: inherit;
+  padding: 0;
+  min-width: 0;
+  line-height: inherit;
+  transition: color .3s ease-in;
+  user-select: text;
+}
+
+input[type=submit].secondary:hover {
+  color: var(--page-accent-light);
+  text-decoration: underline;
+  transition: color .1s ease-out;
 }

@@ -36,12 +36,12 @@ namespace Vivelin.Web.Home
                 });
         }
 
-        private static async Task MigrateDatabaseAsync(IServiceScope serviceScope)
+        private static Task MigrateDatabaseAsync(IServiceScope serviceScope)
         {
             var lifetime = serviceScope.ServiceProvider.GetRequiredService<IHostApplicationLifetime>();
             var context = serviceScope.ServiceProvider.GetRequiredService<DataContext>();
 
-            await context.Database.MigrateAsync(lifetime.ApplicationStopping);
+            return context.Database.MigrateAsync(lifetime.ApplicationStopping);
         }
     }
 }
