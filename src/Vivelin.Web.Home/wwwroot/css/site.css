@@ -10,6 +10,8 @@
   --page-accent-contrast: #18181f;
   --page-warning: #fbc02d;
   --page-warning-contrast: #18181f;
+  --tooltip-background: white;
+  --tooltip-text: black;
   --ui-font: Barlow, sans-serif;
   --text-font: Literata, serif;
   --page-width: 70rem;
@@ -384,4 +386,70 @@ input[type=submit].secondary:hover {
   color: var(--page-accent-light);
   text-decoration: underline;
   transition: color .1s ease-out;
+}
+
+/* Dashboard */
+.stream {
+  background-color: var(--page-background-secondary);
+  border-radius: 5px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+  font-family: var(--ui-font);
+  font-size: 1em;
+  position: relative;
+}
+
+.stream p {
+  margin: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.stream a,
+.stream a:visited,
+.stream a:hover {
+  color: var(--page-text);
+  text-decoration: none;
+  display: block;
+  margin: .5em 1em;
+}
+
+.stream-title {
+  font-weight: 700;
+}
+
+.stream-tooltip {
+  display: none;
+  padding: 1em;
+  background-color: var(--tooltip-background);
+  border: none;
+  border-radius: 5px;
+  color: var(--tooltip-text);
+}
+
+.stream-tooltip:after {
+  right: 100%;
+  top: calc(1em + 5px);
+  border: solid transparent;
+  content: '';
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-right-color: var(--tooltip-background);
+  border-width: .75em;
+  margin-top: -.75em;
+}
+
+.stream-tooltip .stream-thumbnail {
+  display: block;
+  width: 300px;
+  height: 169px;
+}
+
+.stream:hover .stream-tooltip {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: calc(-300px - 3em);
 }

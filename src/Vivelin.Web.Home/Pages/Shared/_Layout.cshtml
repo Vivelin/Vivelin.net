@@ -14,7 +14,7 @@
     <header class="page-header">
         <p class="site-title"><a href="/"><img class="inline avatar" src="~/images/avatar-small.png" />Vivelin.net</a></p>
         <nav>
-            <ul
+            <ul>
                 <li><a href="/dashboard">Dashboard</a></li>
                 @if ((await AuthService.AuthorizeAsync(User, Model, "Admin")).Succeeded)
                 {
