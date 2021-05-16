@@ -411,7 +411,13 @@ input[type=submit].secondary:hover {
   color: var(--page-text);
   text-decoration: none;
   display: block;
-  margin: .5em 1em;
+  margin: .5em;
+}
+
+.stream-profile {
+  float: left;
+  margin-right: .5em;
+  max-height: 3em;
 }
 
 .stream-title {

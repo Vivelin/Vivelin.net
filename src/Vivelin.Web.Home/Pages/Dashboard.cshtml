@@ -7,15 +7,16 @@
 <component type="typeof(Vivelin.Web.Home.Shared.QuoteDisplay)"
            render-mode="Static" />
 
-@foreach (var stream in Model.Streams.OrderByDescending(x => x.StartedAt))
+@foreach (var stream in Model.Streams.OrderBy(x => x.Uptime))
 {
 <article class="stream">
-    <a href="https://www.twitch.tv/@stream.UserLogin" rel="external">
+    <a href="@stream.Link" rel="external">
+        <img class="stream-profile" src="@stream.ProfileImageUrl" alt="" />
         <p class="stream-title">@stream.Title</p>
-        <p class="stream-description">@stream.UserName streaming @stream.GameName for @stream.ViewerCount viewer@(stream.ViewerCount != 1 ? "s" : "")</p>
+        <p class="stream-description">@stream.Broadcaster streaming @stream.GameName for @stream.ViewerCount viewer@(stream.ViewerCount != 1 ? "s" : "")</p>
     </a>
     <div class="stream-tooltip">
-        <img class="stream-thumbnail" src="@(stream.ThumbnailUrl.Replace("{width}", "600").Replace("{height}", "337"))" alt="">
+        <img class="stream-thumbnail" src="@stream.ThumbnailUrl" alt="">
     </div>
 </article>
 }

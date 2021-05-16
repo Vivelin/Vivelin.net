@@ -11,8 +11,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Options;
-using Vivelin.Web.Home.Authentication;
+using Vivelin.Web.Home.Models;
 using Vivelin.Web.Home.Twitch;
 
 namespace Vivelin.Web.Home.Pages
@@ -34,7 +33,7 @@ namespace Vivelin.Web.Home.Pages
             _authService = authService;
         }
 
-        public List<LiveStream> Streams { get; set; }
+        public List<StreamInfo> Streams { get; set; }
 
         public async Task<IActionResult> OnGetAsync(CancellationToken cancellationToken)
         {
@@ -46,20 +45,34 @@ namespace Vivelin.Web.Home.Pages
                 return Forbid();
 
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var request = new HttpRequestMessage(HttpMethod.Get, $"streams/followed?user_id={Uri.EscapeDataString(userId)}");
-            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+            var streams = await GetFromTwitchAsync<StreamsResponse>(
+                $"streams/followed?user_id={Uri.EscapeDataString(userId)}",
+                accessToken, cancellationToken);
+
+            var usersQuery = string.Join("&id=", streams.Data.Select(x => x.UserId).Distinct());
+            var users = await GetFromTwitchAsync<UsersResponse>(
+                $"users?id={usersQuery}", accessToken, cancellationToken);
+
+            Streams = StreamInfo.BuildList(streams.Data, users.Data);
+            return Page();
+        }
+
+        private async Task<T> GetFromTwitchAsync<T>(string requestUri, string accessToken, CancellationToken cancellationToken)
+        {
+            var request = new HttpRequestMessage(HttpMethod.Get, requestUri);
+            request.Headers.Authorization = new AuthenticationHeaderValue(
+                "Bearer", accessToken);
 
             var response = await _httpClient.SendAsync(request, cancellationToken);
             if (!response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync(cancellationToken);
-                throw new HttpRequestException($"The request to {request.RequestUri} returned a {(int)response.StatusCode} ({response.ReasonPhrase}). Response content:\n{content}", null, response.StatusCode);
+                throw new HttpRequestException($"The request to {request.RequestUri} " +
+                    $"returned a {(int)response.StatusCode} ({response.ReasonPhrase}). " +
+                    $"Response content:\n{content}", null, response.StatusCode);
             }
 
-            var data = await response.Content.ReadFromJsonAsync<StreamsResponse>(s_jsonSerializerOptions, cancellationToken);
-            Streams = data.Data;
-
-            return Page();
+            return await response.Content.ReadFromJsonAsync<T>(s_jsonSerializerOptions, cancellationToken);
         }
     }
 }
