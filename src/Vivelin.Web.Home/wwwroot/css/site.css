@@ -417,11 +417,24 @@ input[type=submit].secondary:hover {
 .stream-profile {
   float: left;
   margin-right: .5em;
-  max-height: 3em;
+  height: 60px;
 }
 
 .stream-title {
   font-weight: 700;
+}
+
+.stream-broadcaster,
+.stream-game,
+.stream-viewercount {
+  font-weight: 400;
+}
+
+.separator::before {
+  margin: 0 .5em;
+  content: '//';
+  opacity: .4;
+  font-weight: 300;
 }
 
 .stream-tooltip {
