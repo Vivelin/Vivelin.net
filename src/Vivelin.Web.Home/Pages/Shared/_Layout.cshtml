@@ -1,0 +1,46 @@
+﻿@inject Microsoft.AspNetCore.Authorization.IAuthorizationService AuthService
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Vivelin.net</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;600;700&family=Literata:ital,wght@0,400;0,700;0,800;1,400&display=swap">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <header class="page-header">
+        <p class="site-title"><a href="/"><img class="inline avatar" src="~/images/avatar-small.png" />Vivelin.net</a></p>
+        <nav>
+            <ul>
+                <li><a href="/dashboard">Dashboard</a></li>
+                @if ((await AuthService.AuthorizeAsync(User, Model, "Admin")).Succeeded)
+                {
+                    <li><a href="/admin/quotes">Quotes</a></li>
+                }
+            </ul>
+        </nav>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <form class="user-info" method="post" asp-page-handler="Logout" asp-page="Index">
+                <img class="inline avatar" src="@User.FindFirst("urn:twitch:profileimageurl")?.Value" />
+                <span class="username">@(User.FindFirst("urn:twitch:displayname")?.Value ?? User.Identity.Name)</span>
+                <input type="submit" class="secondary" value="Log out" />
+            </form>
+        }
+        else
+        {
+            <p class="user-info">
+                <a asp-page-handler="Login" asp-page="Index">Log in</a>
+            </p>
+        }
+    </header>
+    <main class="main">
+        @RenderBody()
+    </main>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

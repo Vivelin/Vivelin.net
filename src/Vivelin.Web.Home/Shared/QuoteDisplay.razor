@@ -1,0 +1,67 @@
+﻿@inject Vivelin.Web.Data.DataContext Context
+@using Microsoft.EntityFrameworkCore 
+
+@if (Quote != null)
+{
+    <figure class="quote" data-quote-id="@Quote.Id">
+        <blockquote>
+            @((MarkupString)Quote.Text)@* TODO: Use Markdown w/ whitelist instead *@
+        </blockquote>
+        <figcaption>
+            @if (Quote.Author != null)
+            {
+                <text>@Quote.Author, </text>
+            }
+            @if (Quote.SourceHref == null)
+            {
+                <cite>@Quote.Source</cite>
+            }
+            else
+            {
+                <cite><a href="@Quote.SourceHref" rel="external" target="_blank">@Quote.Source</a></cite>
+            }
+            @if (Quote.Publisher != null)
+            {
+                if (Quote.PublicationYear != null)
+                {
+                    <text> (@Quote.Publisher, @Quote.PublicationYear)</text>
+                }
+                else
+                {
+                    <text> (@Quote.Publisher)</text>
+                }
+            }
+            @if (Quote.PageNumber != null)
+            {
+                <text>, @Quote.PageNumber</text>
+            }
+        </figcaption>
+    </figure>
+}
+
+@code {
+    [Parameter]
+    public Vivelin.Web.Data.Quote? Quote { get; set; }
+
+    [Parameter]
+    public int? Id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (Quote == null  && Id != null)
+            Quote = await Context.Quotes.FindAsync(Id);
+
+        if (Quote == null)
+            Quote = await GetRandomQuoteAsync();
+    }
+
+    private async Task<Vivelin.Web.Data.Quote> GetRandomQuoteAsync()
+    {
+        var count = await Context.Quotes.CountAsync();
+        var id = new Random().Next(count);
+        return await Context.Quotes
+            .OrderBy(x => x.Id)
+            .Skip(id)
+            .FirstOrDefaultAsync();
+    }
+}
