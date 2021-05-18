@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+
+using Vivelin.AspNetCore.Headers;
 using Vivelin.Web.Data;
 using Vivelin.Web.Home.Authentication;
 
@@ -94,6 +96,25 @@ namespace Vivelin.Web.Home
             app.UseForwardedHeaders(new ForwardedHeadersOptions
             {
                 ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            });
+
+            app.UseResponseHeaders(options =>
+            {
+                options.PreventFraming();
+                options.PreventContentTypeSniffing();
+                options.AddContentSecurityPolicy(csp =>
+                {
+                    csp.Default.AllowFromSelf();
+                    csp.Images.AllowFromSelf()
+                        .AllowFromOrigin("https://static-cdn.jtvnw.net/");
+                    csp.Styles.AllowFromSelf()
+                        .AllowFromOrigin("https://fonts.googleapis.com/");
+                    csp.Fonts.AllowFromSelf()
+                        .AllowFromOrigin("https://fonts.gstatic.com/");
+
+                });
+                options.AddReferrerPolicy(ReferrerPolicy.OriginWhenCrossOrigin);
+                options.Add("Permissions-Policy", "");
             });
 
             app.UseExceptionHandler("/Error");
