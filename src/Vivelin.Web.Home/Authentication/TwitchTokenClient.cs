@@ -5,7 +5,10 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
+using AspNet.Security.OAuth.Twitch;
+
 using Microsoft.AspNetCore.Authentication.OAuth;
+using Microsoft.Extensions.Options;
 
 namespace Vivelin.Web.Home.Authentication
 {
@@ -15,8 +18,7 @@ namespace Vivelin.Web.Home.Authentication
     public class TwitchTokenClient
     {
         private static readonly HttpClient s_httpClient = new HttpClient();
-        private readonly string _clientId;
-        private readonly string _clientSecret;
+        private readonly IOptionsMonitor<TwitchAuthenticationOptions> _options;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TwitchTokenClient"/>
@@ -24,17 +26,19 @@ namespace Vivelin.Web.Home.Authentication
         /// </summary>
         /// <param name="clientId">The Twitch client ID.</param>
         /// <param name="clientSecret">The Twitch client secret.</param>
-        public TwitchTokenClient(string clientId, string clientSecret)
+        public TwitchTokenClient(IOptionsMonitor<TwitchAuthenticationOptions> options)
         {
-            this._clientId = clientId;
-            this._clientSecret = clientSecret;
+            _options = options;
         }
 
         /// <summary>
         /// Gets or sets the Twitch OAuth token endpoint address.
         /// </summary>
         public Uri TokenEndpoint { get; set; }
-            = new Uri(AspNet.Security.OAuth.Twitch.TwitchAuthenticationDefaults.TokenEndpoint);
+            = new Uri(TwitchAuthenticationDefaults.TokenEndpoint);
+
+        protected TwitchAuthenticationOptions Options 
+            => _options.Get(TwitchAuthenticationDefaults.AuthenticationScheme);
 
         /// <summary>
         /// Requests a new access token based on a given OAuth refresh token.
@@ -51,9 +55,9 @@ namespace Vivelin.Web.Home.Authentication
             {
                 {"grant_type", "refresh_token" },
                 {"refresh_token", refreshToken },
-                {"client_id", _clientId },
-                {"client_secret", _clientSecret },
-                { "scope", "user:read:email" }
+                {"client_id", Options.ClientId },
+                {"client_secret", Options.ClientSecret },
+                { "scope", string.Join(" ", Options.Scope) }
             };
 
             var requestContent = new FormUrlEncodedContent(tokenRequestParameters);

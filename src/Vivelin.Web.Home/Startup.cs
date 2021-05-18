@@ -83,9 +83,7 @@ namespace Vivelin.Web.Home
                 client.DefaultRequestHeaders.Add("client-id", Configuration["Twitch:ClientId"]);
             });
 
-            services.AddSingleton(new TwitchTokenClient(
-                Configuration["Twitch:ClientId"],
-                Configuration["Twitch:ClientSecret"]));
+            services.AddSingleton<TwitchTokenClient>();
             services.AddSingleton<TwitchAuthenticationEvents>();
         }
 
