@@ -33,7 +33,9 @@ namespace Vivelin.Web.Home.Pages
             _authService = authService;
         }
 
-        public List<StreamInfo> Streams { get; set; }
+        public List<StreamInfo> Streams { get; set; } = new List<StreamInfo>();
+
+        public string ErrorMessage { get; set; }
 
         public async Task<IActionResult> OnGetAsync(CancellationToken cancellationToken)
         {
@@ -48,12 +50,21 @@ namespace Vivelin.Web.Home.Pages
             var streams = await GetFromTwitchAsync<StreamsResponse>(
                 $"streams/followed?user_id={Uri.EscapeDataString(userId)}",
                 accessToken, cancellationToken);
+            if (streams.Data.Any())
+            {
+                var userIds = streams.Data.Select(x => x.UserId).Distinct().ToList();
+                if (userIds.Count > 100)
+                {
+                    ErrorMessage = "There are currently more than 100 users live.";
+                    return Page();
+                }
 
-            var usersQuery = string.Join("&id=", streams.Data.Select(x => x.UserId).Distinct());
-            var users = await GetFromTwitchAsync<UsersResponse>(
-                $"users?id={usersQuery}", accessToken, cancellationToken);
+                var usersQuery = string.Join("&id=", userIds);
+                var users = await GetFromTwitchAsync<UsersResponse>(
+                    $"users?id={usersQuery}", accessToken, cancellationToken);
 
-            Streams = StreamInfo.BuildList(streams.Data, users.Data);
+                Streams = StreamInfo.BuildList(streams.Data, users.Data);
+            }
             return Page();
         }
 
