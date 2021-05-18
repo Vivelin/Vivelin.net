@@ -1,6 +1,10 @@
 using System;
+using System.Threading;
+using System.Threading.Tasks;
+
 using AspNet.Security.OAuth.Twitch;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OAuth;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -39,6 +43,11 @@ namespace Vivelin.Web.Home
                 {
                     options.Cookie.HttpOnly = true;
                     options.Cookie.SameSite = SameSiteMode.Lax;
+                    options.LoginPath = "/login";
+                    options.LogoutPath = "/logout";
+                    options.EventsType = typeof(TwitchAuthenticationEvents);
+                    options.ExpireTimeSpan = TimeSpan.FromDays(14);
+                    options.SlidingExpiration = true;
                 })
                 .AddTwitch(options =>
                 {
@@ -47,21 +56,21 @@ namespace Vivelin.Web.Home
                     options.SaveTokens = true;
                     options.Scope.Add("user:read:follows");
                     options.Scope.Add("user:read:subscriptions");
+                    options.Events = new OAuthEvents
+                    {
+                        OnTicketReceived = context =>
+                        {
+                            context.Properties.IsPersistent = true;
+                            return Task.CompletedTask;
+                        }
+                    };
                 });
 
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("Admin", policy => policy.RequireUserName("vivelin"));
+                options.InvokeHandlersAfterFailure = false;
             });
-
-            services.AddOptions<CookieAuthenticationOptions>(
-                CookieAuthenticationDefaults.AuthenticationScheme)
-                .Configure<TwitchAuthenticationEvents>((options, events) =>
-                {
-                    options.LoginPath = "/login";
-                    options.LogoutPath = "/logout";
-                    options.Events = events;
-                });
 
             services.AddRazorPages(o =>
             {
