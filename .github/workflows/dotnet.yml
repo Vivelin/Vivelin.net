@@ -22,9 +22,9 @@ jobs:
     - name: Build
       run: dotnet build --no-restore --configuration Release
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test --no-build --configuration Release --verbosity normal
     - name: Publish
-      run: dotnet publish --no-build --runtime linux-x64 --output "publish" --self-contained false
+      run: dotnet publish --no-build --configuration Release --runtime linux-x64 --output "publish" --self-contained false
     - name: Upload
       uses: actions/upload-artifact@v2
       with:
