@@ -58,5 +58,28 @@ namespace Vivelin.Web.Tests
             var result = value.ToRelativeString(CultureInfo.InvariantCulture);
             Assert.Equal(expected, result);
         }
+
+        [Theory]
+        [InlineData("00:00:01", "1 second ago")]
+        [InlineData("00:01:00", "1 minute ago")]
+        [InlineData("01:00:00", "1 hour ago")]
+        [InlineData("-01:00:00", "in 1 hour")]
+        public void RelativeStringUsesSingularWhenAppropriate(string timeSpan, string expected)
+        {
+            var value = TimeSpan.Parse(timeSpan, CultureInfo.InvariantCulture);
+            var result = value.ToRelativeString(CultureInfo.InvariantCulture);
+            Assert.Equal(expected, result);
+        }
+
+        [Theory]
+        [InlineData("01:00:00:00", "24 hours ago")]
+        [InlineData("01:12:00:00", "36 hours ago")]
+        [InlineData("-01:00:00:00", "in 24 hours")]
+        public void RelativeStringShowsHoursUnder2Days(string timeSpan, string expected)
+        {
+            var value = TimeSpan.Parse(timeSpan, CultureInfo.InvariantCulture);
+            var result = value.ToRelativeString(CultureInfo.InvariantCulture);
+            Assert.Equal(expected, result);
+        }
     }
 }
