@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Globalization;
-using System.Security.Cryptography.X509Certificates;
 
 namespace Vivelin.Web.Home
 {
@@ -10,30 +9,28 @@ namespace Vivelin.Web.Home
     public static class DateTimeExtensions
     {
         /// <summary>
-        /// Returns a string representing the time interval as a time relative
-        /// to the current time.
+        /// Converts the time interval to an approximate string representation.
         /// </summary>
         /// <param name="value">The <see cref="TimeSpan"/> to represent.</param>
         /// <returns>
-        /// A string containing a relative representation of the <paramref
-        /// name="value"/>, e.g. "2 hours ago".
+        /// A string containing an approximate representation of <paramref
+        /// name="value"/>, e.g. "2 hours".
         /// </returns>
-        public static string ToRelativeString(this TimeSpan value)
-            => value.ToRelativeString(CultureInfo.InvariantCulture);
+        public static string ToApproximateString(this TimeSpan value)
+            => value.ToApproximateString(CultureInfo.InvariantCulture);
 
         /// <summary>
-        /// Returns a string representing the time interval as a time relative
-        /// to the current time.
+        /// Converts the time interval to an approximate string representation.
         /// </summary>
         /// <param name="value">The <see cref="TimeSpan"/> to represent.</param>
         /// <param name="formatProvider">
         /// Used to specify culture-specific formatting information.
         /// </param>
         /// <returns>
-        /// A string containing a relative representation of the <paramref
-        /// name="value"/>, e.g. "2 hours ago".
+        /// A string containing an approximate representation of <paramref
+        /// name="value"/>, e.g. "2 hours".
         /// </returns>
-        public static string ToRelativeString(this TimeSpan value, IFormatProvider formatProvider)
+        public static string ToApproximateString(this TimeSpan value, IFormatProvider formatProvider)
         {
             FormattableString component = value.Duration() switch
             {
@@ -49,10 +46,7 @@ namespace Vivelin.Web.Home
                 { TotalDays: < 5 } x => $"{x.TotalDays:0.#} days",
                 TimeSpan x => $"{Math.Round(x.TotalDays)} days"
             };
-
-            if (value.Ticks < 0)
-                return $"in {component.ToString(formatProvider)}";
-            return $"{component.ToString(formatProvider)} ago";
+            return component.ToString(formatProvider);
         }
     }
 }
