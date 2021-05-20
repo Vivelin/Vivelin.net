@@ -1,6 +1,7 @@
 ﻿:root {
   --page-background: #18181f;
   --page-background-secondary: #23232e;
+  --page-background-secondary-light: #44445a;
   --page-border: #0d0d11;
   --page-text: #dedede;
   --page-text-secondary: #818181;
@@ -473,4 +474,13 @@ input[type=submit].secondary:hover {
   position: absolute;
   top: 0;
   right: calc(-300px - 3em);
+}
+
+.stream:focus-within {
+  background-color: var(--page-background-secondary-light);
+  box-shadow: inset 0 0 0 1px var(--page-text);
+}
+
+.stream:focus-within a {
+  outline: none;
 }
