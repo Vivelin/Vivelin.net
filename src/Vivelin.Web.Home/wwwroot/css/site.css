@@ -426,7 +426,8 @@ input[type=submit].secondary:hover {
 
 .stream-broadcaster,
 .stream-game,
-.stream-viewercount {
+.stream-viewercount,
+.stream-uptime {
   font-weight: 400;
 }
 
