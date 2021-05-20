@@ -22,18 +22,20 @@ namespace Vivelin.Web.Home
         /// </returns>
         public static string ToRelativeString(this TimeSpan value, IFormatProvider formatProvider)
         {
-            FormattableString result = value switch
+            FormattableString component = value.Duration() switch
             {
-                { TotalSeconds: < 60 } => $"{Math.Round(value.TotalSeconds)} seconds ago",
-                { TotalMinutes: < 5 } => $"{value.TotalMinutes:0.#} minutes ago",
-                { TotalMinutes: < 60 } => $"{Math.Round(value.TotalMinutes)} minutes ago",
-                { TotalHours: < 4 } => $"{value.TotalHours:0.#} hours ago",
-                { TotalHours: < 48 } => $"{Math.Round(value.TotalHours)} hours ago",
-                { TotalDays: < 5 } => $"{value.TotalDays:0.#} days ago",
-                _ => $"{Math.Round(value.TotalDays)} days ago"
+                { TotalSeconds: < 60 } x => $"{Math.Round(x.TotalSeconds)} seconds",
+                { TotalMinutes: < 5 } x => $"{x.TotalMinutes:0.#} minutes",
+                { TotalMinutes: < 60 } x => $"{Math.Round(x.TotalMinutes)} minutes",
+                { TotalHours: < 4 } x => $"{x.TotalHours:0.#} hours",
+                { TotalHours: < 48 } x => $"{Math.Round(x.TotalHours)} hours",
+                { TotalDays: < 5 } x => $"{x.TotalDays:0.#} days",
+                TimeSpan x => $"{Math.Round(x.TotalDays)} days"
             };
 
-            return result.ToString(formatProvider);
+            if (value.Ticks < 0)
+                return $"in {component.ToString(formatProvider)}";
+            return $"{component.ToString(formatProvider)} ago";
         }
     }
 }
