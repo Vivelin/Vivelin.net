@@ -467,7 +467,8 @@ input[type=submit].secondary:hover {
   height: 169px;
 }
 
-.stream:hover .stream-tooltip {
+.stream:hover .stream-tooltip,
+.stream a:focus-visible + .stream-tooltip {
   display: block;
   position: absolute;
   top: 0;
