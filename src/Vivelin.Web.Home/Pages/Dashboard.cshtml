@@ -26,7 +26,7 @@ else if (Model.Streams.Count == 0)
                 <span class="separator"></span>
                 <b class="stream-game">@stream.GameName</b>
                 <span class="separator"></span>
-                <b class="stream-uptime">@(stream.Uptime.ToRelativeString())</b>
+                <b class="stream-uptime">@(stream.Uptime.ToApproximateString())</b>
                 <span class="separator"></span>
                 <b class="stream-viewercount">@(stream.ViewerCount.ToString("n0", System.Globalization.CultureInfo.InvariantCulture))</b> viewer@(stream.ViewerCount != 1 ? "s" : "")
             </p>
