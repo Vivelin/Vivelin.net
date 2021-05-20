@@ -20,7 +20,7 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore --runtime linux-x64 
     - name: Build
-      run: dotnet build --no-restore --configuration Release
+      run: dotnet build --no-restore --configuration Release --runtime linux-x64 
     - name: Test
       run: dotnet test --no-build --configuration Release --verbosity normal
     - name: Publish
