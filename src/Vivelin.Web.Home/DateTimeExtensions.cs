@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Security.Cryptography.X509Certificates;
 
 namespace Vivelin.Web.Home
@@ -8,6 +9,18 @@ namespace Vivelin.Web.Home
     /// </summary>
     public static class DateTimeExtensions
     {
+        /// <summary>
+        /// Returns a string representing the time interval as a time relative
+        /// to the current time.
+        /// </summary>
+        /// <param name="value">The <see cref="TimeSpan"/> to represent.</param>
+        /// <returns>
+        /// A string containing a relative representation of the <paramref
+        /// name="value"/>, e.g. "2 hours ago".
+        /// </returns>
+        public static string ToRelativeString(this TimeSpan value)
+            => value.ToRelativeString(CultureInfo.InvariantCulture);
+
         /// <summary>
         /// Returns a string representing the time interval as a time relative
         /// to the current time.
@@ -24,9 +37,9 @@ namespace Vivelin.Web.Home
         {
             FormattableString component = value.Duration() switch
             {
-                { TotalSeconds:  1 } x => $"1 second",
+                { TotalSeconds: 1 } x => $"1 second",
                 { TotalSeconds: < 60 } x => $"{Math.Round(x.TotalSeconds)} seconds",
-                { TotalMinutes:  1 } x => $"1 minute",
+                { TotalMinutes: 1 } x => $"1 minute",
                 { TotalMinutes: < 5 } x => $"{x.TotalMinutes:0.#} minutes",
                 { TotalMinutes: < 60 } x => $"{Math.Round(x.TotalMinutes)} minutes",
                 { TotalHours: 1 } x => $"1 hour",
