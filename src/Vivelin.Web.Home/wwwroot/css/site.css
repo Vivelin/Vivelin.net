@@ -194,6 +194,11 @@ strong {
   font-weight: 800;
 }
 
+small {
+  font-size: .8em;
+  opacity: .6;
+}
+
 .quote blockquote {
   margin: 0;
   text-align: justify;
@@ -422,7 +427,7 @@ input[type=submit].secondary:hover {
 }
 
 .stream-title {
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .stream-broadcaster,

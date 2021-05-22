@@ -7,7 +7,7 @@
 <component type="typeof(Vivelin.Web.Home.Shared.QuoteDisplay)"
            render-mode="Static" />
 
-@if (Model.ErrorMessage != null) 
+@if (Model.ErrorMessage != null)
 {
     <h3 class="error-message">@Model.ErrorMessage</h3>
 }
@@ -35,4 +35,8 @@ else if (Model.Streams.Count == 0)
             <img class="stream-thumbnail" src="@stream.ThumbnailUrl" alt="">
         </div>
     </article>
+}
+@if (Model.Streams.Count > 0)
+{
+    <p><small>Last updated <time datetime="@DateTimeOffset.UtcNow.ToString("O")">@DateTimeOffset.Now.ToString("HH:mm:sszzz")</time></small></p>
 }
