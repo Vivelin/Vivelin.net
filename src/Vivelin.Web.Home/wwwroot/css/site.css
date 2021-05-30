@@ -13,7 +13,7 @@
   --page-warning-contrast: #18181f;
   --tooltip-background: white;
   --tooltip-text: black;
-  --ui-font: Barlow, sans-serif;
+  --ui-font: 'IBM Plex Sans Condensed', sans-serif;
   --text-font: Literata, serif;
   --page-width: 70rem;
 }
@@ -245,6 +245,10 @@ img.inline {
 /**
  * Forms
  */
+.ui {
+  font-family: var(--ui-font);
+}
+
 form {
   font-family: var(--ui-font);
 }
