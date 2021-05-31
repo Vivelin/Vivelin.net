@@ -7,36 +7,38 @@
 <component type="typeof(Vivelin.Web.Home.Shared.QuoteDisplay)"
            render-mode="Static" />
 
-@if (Model.ErrorMessage != null)
-{
-    <h3 class="error-message">@Model.ErrorMessage</h3>
-}
-else if (Model.Streams.Count == 0)
-{
-    <h3>This page intentionally left blank.</h3>
-}
-@foreach (var stream in Model.Streams.OrderBy(x => x.Uptime))
-{
-    <article class="stream">
-        <a href="@stream.Link" rel="external">
-            <img class="stream-profile" src="@stream.ProfileImageUrl" alt="" />
-            <p class="stream-title" title="@stream.Title">@stream.Title</p>
-            <p class="stream-description">
-                <b class="stream-broadcaster">@stream.Broadcaster</b>
-                <span class="separator"></span>
-                <b class="stream-game">@stream.GameName</b>
-                <span class="separator"></span>
-                <b class="stream-uptime">@(stream.Uptime.ToApproximateString())</b>
-                <span class="separator"></span>
-                <b class="stream-viewercount">@(stream.ViewerCount.ToString("n0", System.Globalization.CultureInfo.InvariantCulture))</b> viewer@(stream.ViewerCount != 1 ? "s" : "")
-            </p>
-        </a>
-        <div class="stream-tooltip">
-            <img class="stream-thumbnail" src="@stream.ThumbnailUrl" alt="">
-        </div>
-    </article>
-}
-@if (Model.Streams.Count > 0)
-{
-    <p><small>Last updated <time datetime="@DateTimeOffset.UtcNow.ToString("O")">@DateTimeOffset.Now.ToString("HH:mm:sszzz")</time></small></p>
-}
+<section class="ui">
+    @if (Model.ErrorMessage != null)
+    {
+        <h3 class="error-message">@Model.ErrorMessage</h3>
+    }
+    else if (Model.Streams.Count == 0)
+    {
+        <h3>This page intentionally left blank.</h3>
+    }
+    @foreach (var stream in Model.Streams.OrderBy(x => x.Uptime))
+    {
+        <article class="stream">
+            <a href="@stream.Link" rel="external">
+                <img class="stream-profile" src="@stream.ProfileImageUrl" alt="" />
+                <p class="stream-title" title="@stream.Title">@stream.Title</p>
+                <p class="stream-description">
+                    <b class="stream-broadcaster">@stream.Broadcaster</b>
+                    <span class="separator"></span>
+                    <b class="stream-game">@stream.GameName</b>
+                    <span class="separator"></span>
+                    <b class="stream-uptime">@(stream.Uptime.ToApproximateString())</b>
+                    <span class="separator"></span>
+                    <b class="stream-viewercount">@(stream.ViewerCount.ToString("n0", System.Globalization.CultureInfo.InvariantCulture))</b> viewer@(stream.ViewerCount != 1 ? "s" : "")
+                </p>
+            </a>
+            <div class="stream-tooltip">
+                <img class="stream-thumbnail" src="@stream.ThumbnailUrl" alt="">
+            </div>
+        </article>
+    }
+    @if (Model.Streams.Count > 0)
+    {
+        <p><small>Last updated <time datetime="@DateTimeOffset.UtcNow.ToString("O")">@DateTimeOffset.Now.ToString("HH:mm:sszzz")</time></small></p>
+    }
+</section>

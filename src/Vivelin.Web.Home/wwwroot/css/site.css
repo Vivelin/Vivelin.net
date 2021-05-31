@@ -69,7 +69,7 @@ body {
   display: grid;
   grid-template-columns: minmax(0, 3fr) 2fr;
   column-gap: 1em;
-  row-gap: 1.5em;
+  row-gap: 2em;
   margin: 1em auto;
   max-width: var(--page-width);
 }
@@ -406,6 +406,8 @@ input[type=submit].secondary:hover {
   font-family: var(--ui-font);
   font-size: 1em;
   position: relative;
+  margin: 1em 0;
+  overflow: hidden; /* For some reason this prevents the margins from collapsing */
 }
 
 .stream p {
