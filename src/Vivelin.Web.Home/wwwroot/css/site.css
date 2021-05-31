@@ -406,8 +406,7 @@ input[type=submit].secondary:hover {
   font-family: var(--ui-font);
   font-size: 1em;
   position: relative;
-  margin: 1em 0;
-  overflow: hidden; /* For some reason this prevents the margins from collapsing */
+  margin-bottom: -1em; /* Offset the global grid margin */
 }
 
 .stream p {
