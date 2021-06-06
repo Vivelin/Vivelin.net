@@ -72,5 +72,10 @@ namespace Vivelin.Web.Home.Twitch
         /// Number of viewers watching the stream at the time of the query.
         /// </summary>
         public int ViewerCount { get; set; }
+
+        public override string ToString()
+        {
+            return $"{UserName} - {GameName}";
+        }
     }
 }

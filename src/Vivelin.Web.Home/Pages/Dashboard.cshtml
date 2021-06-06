@@ -2,6 +2,12 @@
 @model Vivelin.Web.Home.Pages.DashboardModel
 @{
     ViewData["Title"] = "Dashboard";
+
+    var intlNumberInfo = new System.Globalization.NumberFormatInfo
+    {
+        NumberDecimalSeparator = ",",
+        NumberGroupSeparator = " "
+    };
 }
 
 <component type="typeof(Vivelin.Web.Home.Shared.QuoteDisplay)"
@@ -19,16 +25,12 @@ else if (Model.Streams.Count == 0)
 {
     <article class="stream">
         <a href="@stream.Link" rel="external">
-            <img class="stream-profile" src="@stream.ProfileImageUrl" alt="" />
+            <img class="stream-profile" src="@stream.ProfileImageUrl" alt="@stream.Broadcaster" title="@stream.Broadcaster" />
             <p class="stream-title" title="@stream.Title">@stream.Title</p>
             <p class="stream-description">
-                <b class="stream-broadcaster">@stream.Broadcaster</b>
-                <span class="separator"></span>
                 <b class="stream-game">@stream.GameName</b>
-                <span class="separator"></span>
                 <b class="stream-uptime">@(stream.Uptime.ToApproximateString())</b>
-                <span class="separator"></span>
-                <b class="stream-viewercount">@(stream.ViewerCount.ToString("n0", System.Globalization.CultureInfo.InvariantCulture))</b> viewer@(stream.ViewerCount != 1 ? "s" : "")
+                <b class="stream-viewercount">@(stream.ViewerCount.ToString("n0", intlNumberInfo)) viewer@(stream.ViewerCount != 1 ? "s" : "")</b>
             </p>
         </a>
         <div class="stream-tooltip">

@@ -25,5 +25,10 @@ namespace Vivelin.Web.Home.Twitch
         public string Email { get; set; }
 
         public DateTimeOffset CreatedAt { get; set; }
+
+        public override string ToString()
+        {
+            return DisplayName;
+        }
     }
 }
