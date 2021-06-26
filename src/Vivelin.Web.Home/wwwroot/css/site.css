@@ -218,6 +218,10 @@ blockquote p:first-child {
   content: '—';
 }
 
+.dialog p {
+  margin: 0;
+}
+
 ::selection {
   background-color: var(--page-accent-dark);
   color: white;
