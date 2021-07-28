@@ -13,9 +13,30 @@
   --page-warning-contrast: #18181f;
   --tooltip-background: white;
   --tooltip-text: black;
+  --control-highlight: rgba(255, 255, 255, 0.1);
   --ui-font: 'IBM Plex Sans Condensed', sans-serif;
   --text-font: Literata, serif;
   --page-width: 70rem;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --page-background: #ffffff;
+    --page-background-secondary: #f5f5f5;
+    --page-background-secondary-light: #dddddd;
+    --page-border: #0d0d0d;
+    --page-text: #181818;
+    --page-text-secondary: #818181;
+    --page-accent: #ea005e;
+    --page-accent-light: #ff5297;
+    --page-accent-dark: #b80049;
+    --page-accent-contrast: #18181f;
+    --page-warning: #fbc02d;
+    --page-warning-contrast: #18181f;
+    --tooltip-background: black;
+    --tooltip-text: white;
+    --control-highlight: rgba(0, 0, 0, 0.05);
+  }
 }
 
 /**
@@ -331,14 +352,14 @@ button,
   padding: .5em 1em;
   min-width: 3rem;
   line-height: 1.4;
-  transition: background-color .2s;
+  transition: background-color .2s, color .2s;
   user-select: none;
 }
 
 input[type=button]:active,
 button:active,
 .link-button:active {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: var(--control-highlight);
   text-decoration: none;
 }
 
@@ -352,7 +373,7 @@ button.warning,
 input[type=button]:hover,
 button:hover,
 .link-button:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: var(--control-highlight);
   text-decoration: none;
 }
 
