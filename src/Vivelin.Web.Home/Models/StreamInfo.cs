@@ -23,7 +23,7 @@ namespace Vivelin.Web.Home.Models
                 .Replace("{width}", thumbnailWidth.ToString())
                 .Replace("{height}", thumbnailHeight.ToString());
             ViewerCount = stream.ViewerCount;
-            Uptime = DateTimeOffset.Now - stream.StartedAt;
+            StartedAt = stream.StartedAt;
         }
 
         public string Link { get; }
@@ -40,7 +40,9 @@ namespace Vivelin.Web.Home.Models
 
         public int ViewerCount { get; }
 
-        public TimeSpan Uptime { get; }
+        public DateTimeOffset StartedAt { get; }
+
+        public TimeSpan Uptime => DateTimeOffset.Now - StartedAt;
 
         public static List<StreamInfo> BuildList(
             IEnumerable<LiveStream> streams,

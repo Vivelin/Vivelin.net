@@ -29,7 +29,7 @@ else
                 <p class="stream-title" title="@stream.Title">@stream.Title</p>
                 <p class="stream-description">
                     <b class="stream-game">@stream.GameName</b>
-                    <b class="stream-uptime">@(stream.Uptime.ToApproximateString())</b>
+                    <b class="stream-uptime"><time datetime="@stream.StartedAt.ToString("O")">@(stream.Uptime.ToApproximateString())</time></b>
                     <b class="stream-viewercount">@(stream.ViewerCount.ToString("n0", intlNumberInfo)) viewer@(stream.ViewerCount != 1 ? "s" : "")</b>
                 </p>
             </a>
