@@ -6,7 +6,7 @@
     var intlNumberInfo = new System.Globalization.NumberFormatInfo
     {
         NumberDecimalSeparator = ",",
-        NumberGroupSeparator = " "
+        NumberGroupSeparator = "\u00A0"
     };
 }
 
@@ -20,6 +20,7 @@ else if (Model.Streams.Count == 0)
 }
 @foreach (var stream in Model.Streams.OrderBy(x => x.Uptime))
 {
+    <p class="ui label">Live on Twitch</p>
     <article class="stream">
         <a href="@stream.Link" rel="external">
             <img class="stream-profile" src="@stream.ProfileImageUrl" alt="@stream.Broadcaster" title="@stream.Broadcaster" />

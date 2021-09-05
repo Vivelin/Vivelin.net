@@ -2,10 +2,11 @@
   --page-background: #18181f;
   --page-background-secondary: #23232e;
   --page-background-secondary-light: #44445a;
-  --page-background-darker: #040406;
+  --page-background-contrast: #080810;
   --page-border: #0d0d11;
   --page-text: #dedede;
   --page-text-secondary: #818181;
+  --page-text-contrast: #dedede;
   --page-accent: #8fc045;
   --page-accent-light: #b4e26f;
   --page-accent-dark: #719140;
@@ -17,6 +18,7 @@
   --control-highlight: rgba(255, 255, 255, 0.1);
   --ui-font: 'IBM Plex Sans Condensed', sans-serif;
   --text-font: Literata, serif;
+  --heading-font: 'IBM Plex Sans Condensed', sans-serif;
   --page-width: 70rem;
 }
 
@@ -26,6 +28,7 @@
 html {
   background-color: var(--page-background);
   color: var(--page-text);
+  text-shadow: 1px 1px 1px #000000AA;
   font-family: var(--text-font);
   font-size: 1.2rem;
   line-height: 1.6;
@@ -122,7 +125,9 @@ body {
     }
 
 .page-footer {
-  background-color: var(--page-background-darker);
+  background-color: var(--page-background-contrast);
+  color: var(--page-text-contrast);
+
   box-shadow: 0 -1px 1px rgba(0, 0, 0, 0.5);
   margin-top: 2em;
 }
@@ -141,7 +146,7 @@ body {
   * Nav
   */
 .page-header {
-  font-family: var(--ui-font);
+  font-family: var(--heading-font);
   font-size: 1.5em;
   font-weight: 400;
   padding: 1rem;
@@ -181,7 +186,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--ui-font);
+  font-family: var(--heading-font);
 }
 
 h1 {
@@ -261,7 +266,6 @@ blockquote p:first-child {
 ::selection {
   background-color: var(--page-accent-dark);
   color: white;
-  text-shadow: 1px 1px 1px black;
 }
 
 .page-message {
@@ -302,6 +306,10 @@ img.inline {
  */
 .ui {
   font-family: var(--ui-font);
+}
+
+.label {
+  font-weight: 600;
 }
 
 form {
@@ -461,7 +469,6 @@ button,
   font-family: var(--ui-font);
   font-size: 1em;
   position: relative;
-  margin-bottom: -1em; /* Offset the global grid margin */
 }
 
   .stream p {
