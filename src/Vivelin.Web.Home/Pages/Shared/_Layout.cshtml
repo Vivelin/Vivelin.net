@@ -16,6 +16,7 @@
         <nav>
             <ul>
                 <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="/projects/smz3">SMZ3</a></li>
                 @if ((await AuthService.AuthorizeAsync(User, Model, "Admin")).Succeeded)
                 {
                     <li><a href="/admin/quotes">Quotes</a></li>
@@ -40,6 +41,12 @@
     <main class="main">
         @RenderBody()
     </main>
+    <div class="page-footer">
+        <footer>
+            <component type="typeof(Vivelin.Web.Home.Shared.QuoteDisplay)"
+                       render-mode="Static" />
+        </footer>
+    </div>
 
     <script src="~/js/time.js" defer async asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)

@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vivelin.Web.Home", "src\Viv
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vivelin.Web.Data", "src\Vivelin.Web.Data\Vivelin.Web.Data.csproj", "{B8DA9D68-EC90-49FD-98AF-3C4011C7DF7C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vivelin.Web.Tests", "test\Vivelin.Web.Tests\Vivelin.Web.Tests.csproj", "{D9F56795-FE82-480C-B0E2-CDB108EAE006}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vivelin.Web.Tests", "test\Vivelin.Web.Tests\Vivelin.Web.Tests.csproj", "{D9F56795-FE82-480C-B0E2-CDB108EAE006}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
