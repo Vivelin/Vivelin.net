@@ -590,6 +590,10 @@ button,
   strong {
     font-weight: 600;
   }
+
+  html {
+    text-shadow: none;
+  }
 }
 
 @media (-webkit-min-device-pixel-ratio: 2), (-moz-min-device-pixel-ratio: 2), (min-device-pixel-ratio: 2) {
