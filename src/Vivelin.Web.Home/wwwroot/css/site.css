@@ -82,6 +82,7 @@ body {
   margin: 1em auto;
   width: 100%;
   max-width: var(--page-width);
+  align-content: baseline;
 }
 
   /* Spanning elements */
