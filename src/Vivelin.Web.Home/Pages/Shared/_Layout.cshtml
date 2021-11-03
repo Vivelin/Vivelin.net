@@ -6,17 +6,18 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Vivelin.net</title>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@300;400;600&family=Literata:ital,wght@0,400;0,700;0,800;1,400&display=swap">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@300;400;600&family=Zilla+Slab:ital,wght@0,400;0,700;1,400&family=Recursive:CASL,MONO@1,1&display=swap">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
 <body>
     <header class="page-header">
-        <p class="site-title"><a href="/"><img class="inline avatar" src="~/images/avatar-small.png" alt=""/>Vivelin.net</a></p>
+        <p class="site-title"><a href="/"><img class="inline avatar" src="~/images/avatar-small.png" alt="" />Vivelin.net</a></p>
         <nav>
             <ul>
                 <li><a href="/dashboard">Dashboard</a></li>
-                <li><a href="/projects/smz3">SMZ3</a></li>
+                <li><a href="/projects/">Projects</a></li>
                 @if ((await AuthService.AuthorizeAsync(User, Model, "Admin")).Succeeded)
                 {
                     <li><a href="/admin/quotes">Quotes</a></li>

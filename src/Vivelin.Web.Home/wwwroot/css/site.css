@@ -17,9 +17,14 @@
   --tooltip-text: black;
   --control-highlight: rgba(255, 255, 255, 0.1);
   --ui-font: 'IBM Plex Sans Condensed', sans-serif;
-  --text-font: Literata, serif;
+  --ui-font-size: 0.8em;
+  --text-font: 'Zilla Slab', serif;
+  --text-font-size: 1.25rem;
   --heading-font: 'IBM Plex Sans Condensed', sans-serif;
-  --page-width: 70rem;
+  --heading-font-size: 0.8em;
+  --code-font: 'Recursive', 'Rec Casual Mono', monospace;
+  --code-font-size: 0.8em;
+  --page-width: 1080px;
 }
 
 /**
@@ -30,8 +35,7 @@ html {
   color: var(--page-text);
   text-shadow: 1px 1px 1px #000000AA;
   font-family: var(--text-font);
-  font-size: 1.2rem;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 body {
@@ -83,6 +87,7 @@ body {
   width: 100%;
   max-width: var(--page-width);
   align-content: baseline;
+  font-size: var(--text-font-size);
 }
 
   /* Spanning elements */
@@ -107,17 +112,13 @@ body {
     overflow: auto;
   }
 
-  .main li {
-    margin: .5em;
-  }
-
   /* Aside elements */
   .main aside {
     grid-column: 2;
-    border-left: 1px solid var(--page-text-secondary);
     color: var(--page-text-secondary);
     padding-left: 1em;
     font-family: var(--ui-font);
+    font-size: var(--ui-font-size);
   }
 
     .main aside p {
@@ -128,7 +129,6 @@ body {
 .page-footer {
   background-color: var(--page-background-contrast);
   color: var(--page-text-contrast);
-
   box-shadow: 0 -1px 1px rgba(0, 0, 0, 0.5);
   margin-top: 2em;
 }
@@ -188,6 +188,7 @@ h4,
 h5,
 h6 {
   font-family: var(--heading-font);
+  font-size: var(--heading-font-size);
 }
 
 h1 {
@@ -219,8 +220,38 @@ a {
     transition: color .1s ease-out;
   }
 
+  a.autolink {
+    word-break: break-all;
+  }
+
+code {
+  font-family: var(--code-font);
+  font-size: var(--code-font-size);
+  background: var(--page-background-secondary);
+  padding: .125em .25em;
+  border-radius: 5px;
+}
+
+pre code {
+  display: block;
+  font-family: var(--code-font);
+  font-size: var(--code-font-size);
+  background: var(--page-background-secondary);
+  padding: .25em .5em;
+  border-radius: 5px;
+}
+
+blockquote {
+  padding-left: 2em;
+  font-style: italic;
+}
+
+  blockquote pre code {
+    font-style: normal;
+  }
+
 strong {
-  font-weight: 800;
+  font-weight: 700;
 }
 
 small {
@@ -243,6 +274,8 @@ abbr[title] {
 
 .quote blockquote {
   margin: 0;
+  padding-left: 0;
+  font-style: inherit;
   text-align: justify;
 }
 
@@ -272,7 +305,7 @@ blockquote p:first-child {
 .page-message {
   grid-column: span 2;
   font-family: var(--ui-font);
-  font-size: 3em;
+  font-size: 3rem;
   margin: 3em 0;
   text-align: center;
 }
@@ -307,6 +340,7 @@ img.inline {
  */
 .ui {
   font-family: var(--ui-font);
+  font-size: var(--ui-font-size);
 }
 
 .label {
@@ -315,6 +349,7 @@ img.inline {
 
 form {
   font-family: var(--ui-font);
+  font-size: var(--ui-font-size);
 }
 
 .form-control p {
@@ -339,7 +374,7 @@ textarea {
   border-radius: 3px;
   color: var(--page-text);
   font-family: var(--ui-font);
-  font-size: 1rem;
+  font-size: var(--ui-font-size);
   max-width: 100%;
   padding: .25em .5em;
 }
@@ -365,7 +400,8 @@ input[type=number] {
 }
 
 textarea {
-  font-family: monospace;
+  font-family: var(--code-font);
+  font-size: var(--code-font-size);
   height: 12rem;
   width: 36rem;
 }
@@ -468,7 +504,7 @@ button,
   border-radius: 5px;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
   font-family: var(--ui-font);
-  font-size: 1em;
+  font-size: 1rem;
   position: relative;
 }
 
@@ -597,8 +633,9 @@ button,
   }
 }
 
-@media (-webkit-min-device-pixel-ratio: 2), (-moz-min-device-pixel-ratio: 2), (min-device-pixel-ratio: 2) {
+/*@media (-webkit-min-device-pixel-ratio: 2), (-moz-min-device-pixel-ratio: 2), (min-device-pixel-ratio: 2) {
   html {
     font-size: 1rem;
   }
 }
+*/
