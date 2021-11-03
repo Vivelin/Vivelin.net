@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Threading.Tasks;
 
 using Markdig;
-using Markdig.Extensions.AutoIdentifiers;
-using Markdig.Extensions.SmartyPants;
-using Markdig.Prism;
-using Markdig.Renderers;
-using Markdig.Renderers.Html.Inlines;
 
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
