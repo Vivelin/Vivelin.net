@@ -113,6 +113,7 @@ namespace Vivelin.Web.Home
                 {
                     csp.Default.AllowFromSelf();
                     csp.Images.AllowFromSelf()
+                        .AllowFromScheme("data:")
                         .AllowFromOrigin("https://static-cdn.jtvnw.net/");
                     csp.Styles.AllowFromSelf()
                         .AllowFromOrigin("https://fonts.googleapis.com/");

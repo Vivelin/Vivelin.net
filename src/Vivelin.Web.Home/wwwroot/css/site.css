@@ -232,13 +232,20 @@ code {
   border-radius: 5px;
 }
 
-pre code {
+pre code:not([class*=language-]) {
   display: block;
   font-family: var(--code-font);
   font-size: var(--code-font-size);
   background: var(--page-background-secondary);
   padding: .25em .5em;
   border-radius: 5px;
+}
+
+pre code[class*=language-] {
+  font-family: var(--code-font);
+  font-size: var(--code-font-size);
+  padding: 0;
+  border-radius: 0;
 }
 
 blockquote {

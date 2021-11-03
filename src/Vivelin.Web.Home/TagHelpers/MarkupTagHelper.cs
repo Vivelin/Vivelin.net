@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Markdig;
 using Markdig.Extensions.AutoIdentifiers;
 using Markdig.Extensions.SmartyPants;
+using Markdig.Prism;
 using Markdig.Renderers;
 using Markdig.Renderers.Html.Inlines;
 
