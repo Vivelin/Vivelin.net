@@ -1,6 +1,6 @@
 ﻿.code-point {
   display: grid;
-  grid-template-columns: 3rem 1fr 1fr;
+  grid-template-columns: 3rem 2fr 1fr;
   grid-template-rows: 1fr 1fr;
   grid-column-gap: .5rem;
   padding: 4px;
@@ -22,7 +22,7 @@
     border-radius: 4px;
     color: var(--page-text-contrast);
     font-size: 2.5rem;
-    line-height: 1;
+    line-height: 3rem;
     text-align: center;
   }
 

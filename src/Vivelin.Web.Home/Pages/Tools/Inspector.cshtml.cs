@@ -35,8 +35,6 @@ namespace Vivelin.Web.Home.Pages.Tools
         {
             public CodePoint(Rune rune)
             {
-                Rune = rune;
-
                 var charInfo = UnicodeInfo.GetCharInfo(rune.Value);
                 DisplayText = charInfo.GetDisplayText();
                 Name = charInfo.Name ?? charInfo.OldName;
@@ -51,8 +49,6 @@ namespace Vivelin.Web.Home.Pages.Tools
                     Utf8 = string.Join(" ", utf8Bytes.Select(x => $"0x{x:X2}"));
                 }
             }
-
-            public Rune Rune { get; }
 
             public string CodePointValue { get; }
 
