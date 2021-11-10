@@ -11,17 +11,19 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@300;400;600&family=Zilla+Slab:ital,wght@0,400;0,700;1,400&family=Recursive:CASL,MONO@1,1&display=swap">
     <link rel="stylesheet" href="~/css/prism.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    @await RenderSectionAsync("Styles", required: false)
 </head>
 <body>
     <header class="page-header">
         <p class="site-title"><a href="/"><img class="inline avatar" src="~/images/avatar-small.png" alt="" />Vivelin.net</a></p>
         <nav>
             <ul>
-                <li><a href="/dashboard">Dashboard</a></li>
-                <li><a href="/projects/">Projects</a></li>
+                <li><a asp-page="/Dashboard">Dashboard</a></li>
+                <li><a asp-page="/Projects/Index">Projects</a></li>
+                <li><a asp-page="/Tools/Index">Tools</a></li>
                 @if ((await AuthService.AuthorizeAsync(User, Model, "Admin")).Succeeded)
                 {
-                    <li><a href="/admin/quotes">Quotes</a></li>
+                    <li><a asp-page="/Admin/Quotes/Index">Quotes</a></li>
                 }
             </ul>
         </nav>
