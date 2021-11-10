@@ -20,12 +20,16 @@ namespace Vivelin.Web.Home.Pages.Tools
             {
                 CodePoints = Text.EnumerateRunes()
                     .Select(x => new CodePoint(x))
+                    .Where(x => !Skip || x.IsInteresting)
                     .ToImmutableList();
             }
         }
 
         [FromQuery]
         public string Text { get; set; }
+
+        [FromQuery]
+        public bool Skip { get; set; }
 
         public bool HasText => Text != null;
 
@@ -61,6 +65,9 @@ namespace Vivelin.Web.Home.Pages.Tools
             public string DisplayText { get; }
 
             public string Utf8 { get; }
+
+            public bool IsInteresting =>
+                Block != "Basic Latin";
         }
     }
 }

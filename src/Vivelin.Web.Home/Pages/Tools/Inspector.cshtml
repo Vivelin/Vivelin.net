@@ -14,6 +14,10 @@
     <textarea asp-for="Text">@Model.Text</textarea>
   </div>
 
+  <div class="form-control">
+      <label><input type="checkbox" asp-for="Skip" /> Skip boring code points</label>
+  </div>
+
   <p>
     <input type="submit" value="Inspect" />
   </p>
@@ -29,8 +33,8 @@
   <h2><data value="@Model.CodePoints.Count">@Model.CodePoints.Count</data> code points</h2>
   foreach (var cp in Model.CodePoints)
   {
-    <article class="code-point">
-      <span class="display" data-category="@cp.Category">@cp.DisplayText</span>
+    <article class="code-point" data-code-point="@cp.CodePointValue" data-category="@cp.Category">
+      <span class="display">@cp.DisplayText</span>
       <span class="name">@cp.CodePointValue <q>@cp.Name</q></span>
       <code class="utf8-bytes">@cp.Utf8</code>
       <span class="block">@cp.Block</span>
