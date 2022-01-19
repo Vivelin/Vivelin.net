@@ -105,6 +105,7 @@ body {
 
   .main > p {
     text-align: justify;
+    hyphens: auto;
   }
 
   .main > pre {
@@ -141,6 +142,18 @@ body {
 
   .page-footer .quote {
     margin: 0;
+  }
+
+ol.footnotes {
+  padding-left: 0;
+}
+
+  ol.footnotes li {
+    list-style: none;
+  }
+
+  ol.footnotes li:target {
+    background-color: var(--page-background-secondary-light);
   }
 
 /**

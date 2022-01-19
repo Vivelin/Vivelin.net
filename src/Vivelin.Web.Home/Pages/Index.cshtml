@@ -1,7 +1,54 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Home";
 }
 
+<h1 hidden>Home</h1>
+
 <p>Hey.</p>
+
+<h2>About me</h2>
+<p>
+    My name is Laura, and I am a software engineer with over 10 years of 
+    experience in various areas of .NET development. I am passionate about 
+    writing code and I have extensive, in-depth knowledge about C# and .NET.
+</p>
+
+<p>
+    I don’t just want to write code; I want to write code <em>well</em>. I don’t
+    shy away from fixing bugs and maintaining/upgrading legacy code, and I have 
+    pushed for unit testing, test-driven development, better coding guidelines 
+    and code reviews in the past. While inexperienced, I’m also interested in 
+    information security as well as UI/UX design.
+</p>
+
+<p>
+    I have a <a href="https://stackoverflow.com/story/vivelin" target="_blank">Developer Story</a> 
+    over at StackOverflow. My full CV is available upon request.
+</p>
+
+<h2>Vivelin</h2>
+<p>
+    On the internet, I go by <b>Vivelin</b>. I am passionate about video games<a 
+    href="#steam"><sup>[1]</sup></a><a href="#ffxiv"><sup>[2]</sup></a>, music<a 
+    href="#lastfm"><sup>[3]</sup></a>, and I spend a lot of time with my 
+    wonderful girlfriend.
+</p>
+
+<p>
+    One of my recent projects is a more casual, accessible version of the <a 
+    asp-page="/Projects/SMZ3">Super Metroid & A Link to the Past crossover 
+    randomizer</a>. It combines <i>Super Metroid</i> and <i>A Link of the Past</i>
+    into a single game. My version of it makes it more casual and approachable,
+    has a built-in voice-enabled item tracker and contains contributions from 
+    community members that were not accepted into the original version.
+</p>
+
+<footer>
+    <ol class="footnotes">
+        <li id="steam"><sup>1</sup>: <a href="https://steamcommunity.com/id/vivelin" target="_blank">Steam Community :: Vivelin</a></li>
+        <li id="ffxiv"><sup>2</sup>: <a href="https://eu.finalfantasyxiv.com/lodestone/character/31696093/" target="_blank">April Reaupe | FINAL FANTASY XIV, The Lodestone</a></li>
+        <li id="lastfm"><sup>3</sup>: <a href="https://www.last.fm/user/Vivelin" target="_blank">Vivelin’s Music Profile | Last.fm</a></li>
+    </ol>
+</footer>
