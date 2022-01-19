@@ -152,8 +152,20 @@ ol.footnotes {
     list-style: none;
   }
 
-  ol.footnotes li:target {
-    background-color: var(--page-background-secondary-light);
+    ol.footnotes li:target {
+      background-color: var(--page-background-secondary-light);
+    }
+
+ul.social {
+  display: flex;
+  grid-column: span 2;
+  padding: 0;
+  margin: 0;
+}
+
+  ul.social li {
+    list-style: none;
+    margin: .5em;
   }
 
 /**
