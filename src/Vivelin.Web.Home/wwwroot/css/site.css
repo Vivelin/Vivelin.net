@@ -158,6 +158,7 @@ ol.footnotes {
 
 ul.social {
   display: flex;
+  flex-wrap: wrap;
   grid-column: span 2;
   padding: 0;
   margin: 0;
@@ -197,7 +198,9 @@ ul.social {
 
 nav ul {
   display: flex;
-  gap: 1em;
+  flex-wrap: wrap;
+  column-gap: 1em;
+  row-gap: 0;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -379,7 +382,7 @@ img.inline {
   font-weight: 600;
 }
 
-form {
+main form {
   font-family: var(--ui-font);
   font-size: var(--ui-font-size);
 }
@@ -665,9 +668,54 @@ button,
   }
 }
 
-/*@media (-webkit-min-device-pixel-ratio: 2), (-moz-min-device-pixel-ratio: 2), (min-device-pixel-ratio: 2) {
-  html {
-    font-size: 1rem;
+@media only screen and (max-width : 1560px) {
+  .page-header {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 1em;
+    row-gap: .5em;
+  }
+
+    .page-header .site-title {
+      min-width: 200px;
+    }
+
+    .page-header .user-info {
+      margin-left: auto;
+    }
+}
+
+@media only screen and (max-width : 1080px) {
+  .page-header .site-title {
+    min-width: 0;
+  }
+
+  .main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    column-gap: 0;
+    row-gap: 1em;
+    margin: 1em 2em;
+    max-width: 648px;
+    width: auto;
+  }
+
+    .main aside {
+      padding-left: 0;
+    }
+
+  .page-footer footer {
+    margin: 1em 2em;
   }
 }
-*/
+
+@media only screen and (max-width : 667px) {
+  .main {
+    margin: 1em;
+  }
+
+  .page-footer footer {
+    margin: 1em;
+  }
+}
