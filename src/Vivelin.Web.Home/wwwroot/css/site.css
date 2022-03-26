@@ -1,10 +1,10 @@
 ﻿:root {
-  --page-background: #18181f;
+  --page-background: #1e1e26;
   --page-background-secondary: #23232e;
   --page-background-secondary-light: #44445a;
   --page-background-contrast: #080810;
   --page-border: #0d0d11;
-  --page-text: #dedede;
+  --page-text: #bbb6c5;
   --page-text-secondary: #818181;
   --page-text-contrast: #dedede;
   --page-accent: #8fc045;
@@ -24,7 +24,7 @@
   --heading-font-size: 0.8em;
   --code-font: 'Recursive', 'Rec Casual Mono', monospace;
   --code-font-size: 0.8em;
-  --page-width: 1080px;
+  --page-width: 40rem;
 }
 
 /**
@@ -33,9 +33,12 @@
 html {
   background-color: var(--page-background);
   color: var(--page-text);
-  text-shadow: 1px 1px 1px #000000AA;
   font-family: var(--text-font);
-  line-height: 1.5;
+  line-height: 1.8;
+}
+
+::selection {
+  text-shadow: 1px 1px 1px #000000AA;
 }
 
 body {
@@ -80,12 +83,10 @@ body {
 .main {
   flex: 1;
   display: grid;
-  grid-template-columns: minmax(0, 3fr) 2fr;
+  grid-template-columns: 1fr var(--page-width) 1fr;
   column-gap: 1em;
-  row-gap: 1em;
-  margin: 1em auto;
-  width: 100%;
-  max-width: var(--page-width);
+  row-gap: 1.25em;
+  margin: 1em;
   align-content: baseline;
   font-size: var(--text-font-size);
 }
@@ -104,7 +105,7 @@ body {
 .main > h1,
 .main > h2,
 .main > form {
-  grid-column: span 2;
+  grid-column: 2 / 3;
 }
 
 .span-3 {
@@ -113,7 +114,7 @@ body {
 
 /* Content elements */
 .main > * {
-  grid-column: 1;
+  grid-column: 2;
   margin: 0;
 }
 
@@ -129,11 +130,12 @@ body {
 
 /* Aside elements */
 .main aside {
-  grid-column: 2;
+  grid-column: 3;
   color: var(--page-text-secondary);
   padding-left: 1em;
   font-family: var(--ui-font);
   font-size: var(--ui-font-size);
+  max-width: 30rem;
 }
 
   .main aside p {
@@ -158,6 +160,10 @@ body {
     margin: 0;
   }
 
+li {
+  margin-bottom: .625em;
+}
+
 ol.footnotes {
   padding-left: 0;
 }
@@ -173,7 +179,7 @@ ol.footnotes {
 ul.social {
   display: flex;
   flex-wrap: wrap;
-  grid-column: span 2;
+  grid-column: 2 / 3;
   padding: 0;
   margin: 0;
 }
@@ -219,6 +225,10 @@ nav ul {
   padding: 0;
   list-style: none;
 }
+
+  nav ul li {
+    margin-bottom: 0;
+  }
 
 /**
  * Elements & Typography
@@ -656,11 +666,11 @@ button,
 
 @media (prefers-color-scheme: light) {
   :root {
-    --page-background: #ffffff;
-    --page-background-secondary: #f5f5f5;
+    --page-background: #f5f5f5;
+    --page-background-secondary: #e5e5e5;
     --page-background-secondary-light: #dddddd;
     --page-border: #0d0d0d;
-    --page-text: #181818;
+    --page-text: #262626;
     --page-text-secondary: #818181;
     --page-accent: #ea005e;
     --page-accent-light: #ff5297;
