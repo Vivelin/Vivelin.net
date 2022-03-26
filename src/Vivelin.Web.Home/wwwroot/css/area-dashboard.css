@@ -1,0 +1,15 @@
+﻿:root {
+  --page-accent: #ba8aff;
+  --page-accent-light: #c69eff;
+  --page-accent-dark: #ae76ff;
+  --page-accent-contrast: #18181f;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --page-accent: #6200eb;
+    --page-accent-light: #6a00ff;
+    --page-accent-dark: #5a00d7;
+    --page-accent-contrast: #18181f;
+  }
+}

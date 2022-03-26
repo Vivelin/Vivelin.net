@@ -1,6 +1,6 @@
 ﻿:root {
   --page-background: #1e1e26;
-  --page-background-secondary: #23232e;
+  --page-background-secondary: #2c2c3c;
   --page-background-secondary-light: #44445a;
   --page-background-contrast: #080810;
   --page-border: #0d0d11;
@@ -55,7 +55,7 @@ body {
   display: grid;
   grid-template-columns: 1fr var(--page-width) 1fr;
   background-color: var(--page-background-secondary);
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
 }
 
   .page-header p {
@@ -566,6 +566,7 @@ button,
   font-family: var(--ui-font);
   font-size: 1rem;
   position: relative;
+  margin-top: -.5rem;
 }
 
   .stream p {
