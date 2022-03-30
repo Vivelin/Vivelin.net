@@ -3,61 +3,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vivelin.net – @ViewData["Title"]</title>
-    <meta name="description" content="This space intentionally left blank" />
-    <meta property="og:image" content="@Url.AbsoluteContent("~/images/avatar.png")" />
-    <meta property="twitter:image" content="@Url.AbsoluteContent("~/images/avatar.png")" />
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@300;400;600&family=Zilla+Slab:ital,wght@0,400;0,700;1,400&family=Recursive:CASL,MONO@1,1&display=swap">
-    <link rel="stylesheet" href="~/css/prism.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    @await RenderSectionAsync("Styles", required: false)
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vivelin.net – @ViewData["Title"]</title>
+  <meta name="description" content="This space intentionally left blank" />
+  <meta property="og:image" content="@Url.AbsoluteContent("~/images/avatar.png")" />
+  <meta property="twitter:image" content="@Url.AbsoluteContent("~/images/avatar.png")" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@300;400;600&family=Zilla+Slab:ital,wght@0,400;0,700;1,400&family=Recursive:CASL,MONO@1,1&display=swap">
+  <link rel="stylesheet" href="~/css/fontawesome.min.css" />
+  <link rel="stylesheet" href="~/css/brands.min.css" />
+  <link rel="stylesheet" href="~/css/prism.css" asp-append-version="true" />
+  <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+  <link rel="stylesheet" href="~/css/links.css" asp-append-version="true" />
+  @await RenderSectionAsync("Styles", required: false)
 </head>
 <body>
-    <header class="page-header">
-        <p class="site-title"><a href="/"><img class="inline avatar" src="~/images/avatar-small.png" alt="" />Vivelin.net</a></p>
-        <nav>
-            <ul>
-                <li><a asp-page="/Dashboard">Dashboard</a></li>
-                <li><a asp-page="/Projects/Index">Projects</a></li>
-                <li><a asp-page="/Tools/Index">Tools</a></li>
-                @if ((await AuthService.AuthorizeAsync(User, Model, "Admin")).Succeeded)
-                {
-                    <li><a asp-page="/Admin/Quotes/Index">Quotes</a></li>
-                }
-            </ul>
-        </nav>
-        @if (User.Identity.IsAuthenticated)
+  <header class="page-header">
+    <p class="site-title"><a href="/"><img class="inline avatar" src="~/images/avatar-small.png" alt="" />Vivelin.net</a></p>
+    <nav>
+      <ul>
+        <li><a asp-page="/Dashboard">Dashboard</a></li>
+        <li><a asp-page="/Projects/Index">Projects</a></li>
+        <li><a asp-page="/Tools/Index">Tools</a></li>
+        @if ((await AuthService.AuthorizeAsync(User, Model, "Admin")).Succeeded)
         {
-            <form class="user-info" method="post" asp-page-handler="Logout" asp-page="Index">
-                <img class="inline avatar" src="@User.FindFirst("urn:twitch:profileimageurl")?.Value" alt="" />
-                <span class="username">@(User.FindFirst("urn:twitch:displayname")?.Value ?? User.Identity.Name)</span>
-                <input type="submit" class="secondary" value="Log out" />
-            </form>
+          <li><a asp-page="/Admin/Quotes/Index">Quotes</a></li>
         }
-        else
-        {
-            <p class="user-info">
-                <a asp-page-handler="Login" asp-page="Index">Log in</a>
-            </p>
-        }
-    </header>
-    <main class="main">         
-        @RenderBody()
-    </main>
-    <div class="page-footer">
-        <footer>
-            <component type="typeof(Vivelin.Web.Home.Shared.QuoteDisplay)"
-                       render-mode="Static" />
-        </footer>
-    </div>
+      </ul>
+    </nav>
+    @if (User.Identity.IsAuthenticated)
+    {
+      <form class="user-info" method="post" asp-page-handler="Logout" asp-page="Index">
+        <img class="inline avatar" src="@User.FindFirst("urn:twitch:profileimageurl")?.Value" alt="" />
+        <span class="username">@(User.FindFirst("urn:twitch:displayname")?.Value ?? User.Identity.Name)</span>
+        <input type="submit" class="secondary" value="Log out" />
+      </form>
+    }
+    else
+    {
+      <p class="user-info">
+        <a asp-page-handler="Login" asp-page="Index">Log in</a>
+      </p>
+    }
+  </header>
+  <main class="main">
+    @RenderBody()
+  </main>
+  <div class="page-footer">
+    <footer>
 
-    <script src="~/js/time.js" defer async asp-append-version="true"></script>
-    <script src="~/js/prism.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+      <ul class="social ui">
+        <li><i class="fab fa-twitter" title="Twitter"></i> <a href="https://twitter.com/MissVivelin" target="_blank">@@MissVivelin</a></li>
+        <li><i class="fab fa-github" title="GitHub"></i> <a href="https://github.com/Vivelin" target="_blank">Vivelin</a></li>
+        <li><i class="fab fa-steam" title="Steam"></i> <a href="https://steamcommunity.com/id/vivelin" target="_blank">Vivelin</a></li>
+        <li><i class="fab fa-xbox" title="Xbox"></i> <span>Vivelin</span></li>
+        <li><i class="fab fa-discord" title="Discord"></i> <span>Vivelin#2710</span></li>
+        <li><i class="fab fa-lastfm" title="Last.fm"></i> <a href="https://www.last.fm/user/Vivelin" target="_blank">Vivelin</a></li>
+        <li><i class="fab fa-bandcamp" title="Bandcamp"></i> <a href="https://bandcamp.com/vivelin" target="_blank">Vivelin</a></li>
+      </ul>
+
+      <component type="typeof(Vivelin.Web.Home.Shared.QuoteDisplay)"
+                 render-mode="Static" />
+    </footer>
+  </div>
+
+  <script src="~/js/time.js" defer async asp-append-version="true"></script>
+  <script src="~/js/prism.js" asp-append-version="true"></script>
+  @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

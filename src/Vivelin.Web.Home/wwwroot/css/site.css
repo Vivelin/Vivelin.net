@@ -152,12 +152,8 @@ body {
 
   .page-footer footer {
     margin: 0 auto;
-    padding: 2em 0;
+    padding: 1em 0;
     max-width: var(--page-width);
-  }
-
-  .page-footer .quote {
-    margin: 0;
   }
 
 li {
@@ -584,6 +580,10 @@ button,
     text-decoration: none;
     display: block;
     margin: .5em;
+  }
+
+  .stream a:before {
+    content: none;
   }
 
 .stream-profile {

@@ -1,88 +1,68 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home";
-}
-@section Styles
-{
-    <link rel="stylesheet" href="~/css/fontawesome.min.css" />
-    <link rel="stylesheet" href="~/css/brands.min.css" />
+  ViewData["Title"] = "Home";
 }
 
 <h1 hidden>Home</h1>
 
 <img class="main-avatar mobile-only-banner" src="~/images/avatar.png" width="300" height="300" alt="" />
 
-<ul class="social ui">
-    <li><i class="fab fa-twitter" title="Twitter"></i> <a href="https://twitter.com/MissVivelin" target="_blank">@@MissVivelin</a></li>
-    <li><i class="fab fa-github" title="GitHub"></i> <a href="https://github.com/Vivelin" target="_blank">Vivelin</a></li>
-    <li><i class="fab fa-steam" title="Steam"></i> <a href="https://steamcommunity.com/id/vivelin" target="_blank">Vivelin</a></li>
-    <li><i class="fab fa-xbox" title="Xbox"></i> <span>Vivelin</span></li>
-    <li><i class="fab fa-discord" title="Discord"></i> <span>Vivelin#2710</span></li>
-    <li><i class="fab fa-lastfm" title="Last.fm"></i> <a href="https://www.last.fm/user/Vivelin" target="_blank">Vivelin</a></li>
-    <li><i class="fab fa-bandcamp" title="Bandcamp"></i> <a href="https://bandcamp.com/vivelin" target="_blank">Vivelin</a></li>
-</ul>
-
 <p>Hey.</p>
 
 <h2>About me</h2>
 <p>
-    My name is Laura, I am 30 years old, I live in the Netherlands and go by 
-    she/her. I am a software engineer with over 10 years of experience in 
-    various areas of .NET development. I am passionate about writing code and I 
-    have extensive, in-depth knowledge about C# and .NET.
+  My name is Laura, I am 30 years old, I live in the Netherlands and go by
+  she/her. I am a software engineer with over 10 years of experience in
+  various areas of .NET development. I am passionate about writing code and I
+  have extensive, in-depth knowledge about C# and .NET.
 </p>
 <aside class="span-3 optional">
-    <img class="main-avatar" src="~/images/avatar.png" width="300" height="300" alt="" />
+  <img class="main-avatar" src="~/images/avatar.png" width="300" height="300" alt="" />
 </aside>
 <p>
-    I don’t just want to write code; I want to write code <em>well</em>. I don’t
-    shy away from fixing bugs and maintaining/upgrading legacy code, and I have 
-    pushed for unit testing, test-driven development, better coding guidelines 
-    and code reviews in the past. While inexperienced, I’m also interested in 
-    information security as well as UI/UX design.
-</p>
-<p>
-    I have a <a href="https://stackoverflow.com/story/vivelin" target="_blank">Developer Story</a> 
-    over at StackOverflow. My full CV is available upon request.
+  I don’t just want to write code; I want to write code <em>well</em>. I don’t
+  shy away from fixing bugs and maintaining/upgrading legacy code, and I have
+  pushed for unit testing, test-driven development, better coding guidelines
+  and code reviews in the past. While inexperienced, I’m also interested in
+  information security as well as UI/UX design.
 </p>
 
 <h2>Personal</h2>
 <p>
-    On the internet, I go by <b>Vivelin</b>. I am passionate about video games<a 
-    href="#steam"><sup>[1]</sup></a><a href="#ffxiv"><sup>[2]</sup></a>, music<a 
-    href="#lastfm"><sup>[3]</sup></a><a href="#bandcamp"><sup>[4]</sup></a>, and 
-    I spend a lot of time with my wonderful girlfriend.
+  On the internet, I go by <b>Vivelin</b>. I am passionate about video games<a href="#steam"><sup>[1]</sup></a><a href="#ffxiv"><sup>[2]</sup></a>, music<a href="#lastfm"><sup>[3]</sup></a><a href="#bandcamp"><sup>[4]</sup></a>, and
+  I spend a lot of time with my wonderful girlfriend.
 </p>
 <p>
-    One of my recent projects is a more casual, accessible version of the 
-    <a href="https://samus.link/" target="_blank">Super Metroid & A Link to the Past crossover randomizer</a>. 
-    It combines the <abbr title="Super Nintendo Entertainment System">SNES</abbr> 
-    games <i>Super Metroid</i> and <i>The Legend of Zelda: A Link to the Past</i> 
-    into a single game, and shuffles the items between both games.
+  One of my recent projects is a more casual, accessible version of the
+  <a href="https://samus.link/" target="_blank">Super Metroid & A Link to the Past crossover randomizer</a>.
+  It combines the <abbr title="Super Nintendo Entertainment System">SNES</abbr>
+  games <i>Super Metroid</i> and <i>The Legend of Zelda: A Link to the Past</i>
+  into a single game, and shuffles the items between both games.
 </p>
 <p>
-    <a asp-page="/Projects/SMZ3">My version of it</a> makes it more casual and 
-    approachable. It is a Windows desktop app, which allows for better 
-    integration and enables features such as a built-in voice-enabled item 
-    tracker. Several community members have contributed custom sprite work as 
-    well as some features that were not accepted into the original version.
+  <a asp-page="/Projects/SMZ3">My version of it</a> makes it more casual and
+  approachable. It is a Windows desktop app, which allows for better
+  integration and enables features such as a built-in voice-enabled item
+  tracker. Several community members have contributed custom sprite work as
+  well as some features that were not accepted into the original version.
 </p>
 
 <h2>Friends</h2>
 <p>
-    Please also check out my friends:
+  Please also check out my friends:
 </p>
 
 <ul>
-    <li><a href="https://fearswe.net/">Thomas Johansson</a></li>
+  <li><a href="https://fearswe.net/">Thomas Johansson</a></li>
 </ul>
 
+
 <footer>
-    <ol class="footnotes">
-        <li id="steam"><sup>1</sup>: <a href="https://steamcommunity.com/id/vivelin" target="_blank">Steam Community :: Vivelin</a></li>
-        <li id="ffxiv"><sup>2</sup>: <a href="https://eu.finalfantasyxiv.com/lodestone/character/31696093/" target="_blank">April Reaupe | FINAL FANTASY XIV, The Lodestone</a></li>
-        <li id="lastfm"><sup>3</sup>: <a href="https://www.last.fm/user/Vivelin" target="_blank">Vivelin’s Music Profile | Last.fm</a></li>
-        <li id="bandcamp"><sup>4</sup>: <a href="https://bandcamp.com/vivelin" target="_blank">vivelin&#39;s collection | Bandcamp</a></li>
-    </ol>
+  <ol class="footnotes">
+    <li id="steam">1: <a href="https://steamcommunity.com/id/vivelin" target="_blank">Steam Community :: Vivelin</a></li>
+    <li id="ffxiv">2: <a href="https://eu.finalfantasyxiv.com/lodestone/character/31696093/" target="_blank">April Reaupe | FINAL FANTASY XIV, The Lodestone</a></li>
+    <li id="lastfm">3: <a href="https://www.last.fm/user/Vivelin" target="_blank">Vivelin’s Music Profile | Last.fm</a></li>
+    <li id="bandcamp">4: <a href="https://bandcamp.com/vivelin" target="_blank">vivelin&#39;s collection | Bandcamp</a></li>
+  </ol>
 </footer>

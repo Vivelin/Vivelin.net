@@ -1,0 +1,47 @@
+﻿main a[href^="https://github.com"]:before {
+  content: '\f09b';
+  font-family: 'Font Awesome 5 Brands';
+  padding-right: .25em;
+}
+
+main a[href^="https://www.twitch.tv"]:before {
+  content: '\f1e8';
+  font-family: 'Font Awesome 5 Brands';
+  padding-right: .25em;
+}
+
+main a[href^="https://twitter.com"]:before {
+  content: '\f099';
+  font-family: 'Font Awesome 5 Brands';
+  padding-right: .25em;
+}
+
+main a[href^="https://www.last.fm"]:before {
+  content: '\f202';
+  font-family: 'Font Awesome 5 Brands';
+  padding-right: .25em;
+}
+
+main a[href^="https://steamcommunity.com"]:before {
+  content: '\f1b6';
+  font-family: 'Font Awesome 5 Brands';
+  padding-right: .25em;
+}
+
+main a[href^="https://bandcamp.com"]:before {
+  content: '\f2d5';
+  font-family: 'Font Awesome 5 Brands';
+  padding-right: .25em;
+}
+
+main a[href^="https://stackoverflow.com"]:before {
+  content: '\f16c';
+  font-family: 'Font Awesome 5 Brands';
+  padding-right: .25em;
+}
+
+main a[href^="https://docs.microsoft.com"]:before {
+  content: '\f3ca';
+  font-family: 'Font Awesome 5 Brands';
+  padding-right: .25em;
+}
