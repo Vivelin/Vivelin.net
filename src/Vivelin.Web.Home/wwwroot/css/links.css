@@ -62,6 +62,7 @@ a[href^="https://docs.microsoft.com"]::before {
   padding-right: .25em;
 }
 
-.ui a::before {
+.ui a::before,
+.stream a::before {
   content: none;
 }
