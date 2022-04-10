@@ -16,11 +16,11 @@
   --tooltip-background: white;
   --tooltip-text: black;
   --control-highlight: rgba(255, 255, 255, 0.1);
-  --ui-font: 'IBM Plex Sans Condensed', sans-serif;
+  --ui-font: 'Quicksand', sans-serif;
   --ui-font-size: 0.8em;
-  --text-font: 'Zilla Slab', serif;
-  --text-font-size: 1.25rem;
-  --heading-font: 'IBM Plex Sans Condensed', sans-serif;
+  --text-font: 'Raleway', sans-serif;
+  --text-font-size: 1.125rem;
+  --heading-font: 'Quicksand', sans-serif;
   --heading-font-size: 0.8em;
   --code-font: 'Recursive', 'Rec Casual Mono', monospace;
   --code-font-size: 0.8em;
@@ -90,6 +90,10 @@ body {
   align-content: baseline;
   font-size: var(--text-font-size);
 }
+
+  .main .main {
+    grid-column: span 3;
+  }
 
 .main-avatar {
   max-width: 100%;
@@ -192,7 +196,7 @@ ul.social {
 .page-header {
   font-family: var(--heading-font);
   font-size: 1.5em;
-  font-weight: 400;
+  font-weight: 500;
   padding: 1rem;
 }
 
@@ -238,6 +242,7 @@ h5,
 h6 {
   font-family: var(--heading-font);
   font-size: var(--heading-font-size);
+  font-weight: 500;
 }
 
 h1 {
@@ -405,7 +410,6 @@ img.inline {
 
 main form {
   font-family: var(--ui-font);
-  font-size: var(--ui-font-size);
 }
 
 .form-control p {
@@ -582,9 +586,9 @@ button,
     margin: .5em;
   }
 
-  .stream a:before {
-    content: none;
-  }
+    .stream a:before {
+      content: none;
+    }
 
 .stream-profile {
   float: left;
