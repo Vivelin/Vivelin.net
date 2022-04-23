@@ -20,7 +20,7 @@
   --ui-font-size: 0.8em;
   --text-font: 'Barlow', sans-serif;
   --text-font-size: 1.125rem;
-  --heading-font: 'Barlow', sans-serif;
+  --heading-font: 'Quicksand', sans-serif;
   --heading-font-size: 0.8em;
   --code-font: 'Recursive', 'Rec Casual Mono', monospace;
   --code-font-size: 0.8em;
@@ -194,7 +194,7 @@ ul.social {
   * Nav
   */
 .page-header {
-  font-family: var(--heading-font);
+  font-family: var(--ui-font);
   font-size: 1.5em;
   font-weight: 500;
   padding: 1rem;
