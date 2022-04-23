@@ -16,11 +16,11 @@
   --tooltip-background: white;
   --tooltip-text: black;
   --control-highlight: rgba(255, 255, 255, 0.1);
-  --ui-font: 'Quicksand', sans-serif;
+  --ui-font: 'Barlow', sans-serif;
   --ui-font-size: 0.8em;
-  --text-font: 'Raleway', sans-serif;
+  --text-font: 'Barlow', sans-serif;
   --text-font-size: 1.125rem;
-  --heading-font: 'Quicksand', sans-serif;
+  --heading-font: 'Barlow', sans-serif;
   --heading-font-size: 0.8em;
   --code-font: 'Recursive', 'Rec Casual Mono', monospace;
   --code-font-size: 0.8em;
@@ -481,7 +481,7 @@ button,
   cursor: pointer;
   display: inline-block;
   font-family: var(--ui-font);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 1rem;
   text-align: center;
   padding: .5em 1em;
@@ -597,7 +597,7 @@ button,
 }
 
 .stream-title {
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .stream-description {
@@ -608,7 +608,7 @@ button,
     margin: 0 .5em;
     content: '//';
     opacity: .4;
-    font-weight: 300;
+    font-weight: 400;
   }
 
 .stream-broadcaster,
