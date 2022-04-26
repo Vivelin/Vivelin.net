@@ -139,7 +139,7 @@ body {
   padding-left: 1em;
   font-family: var(--ui-font);
   font-size: var(--ui-font-size);
-  max-width: 30rem;
+  max-width: 20rem;
 }
 
   .main aside p {
@@ -616,13 +616,6 @@ button,
 .stream-viewercount,
 .stream-uptime {
   font-weight: 400;
-}
-
-.separator::before {
-  margin: 0 .5em;
-  content: '//';
-  opacity: .4;
-  font-weight: 300;
 }
 
 .stream-tooltip {
