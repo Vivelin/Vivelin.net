@@ -20,7 +20,7 @@
   --ui-font-size: 0.8em;
   --text-font: 'Barlow', sans-serif;
   --text-font-size: 1.125rem;
-  --heading-font: 'Quicksand', sans-serif;
+  --heading-font: 'Work Sans', sans-serif;
   --heading-font-size: 0.8em;
   --code-font: 'Recursive', 'Rec Casual Mono', monospace;
   --code-font-size: 0.8em;
@@ -194,7 +194,8 @@ ul.social {
   * Nav
   */
 .page-header {
-  font-family: var(--ui-font);
+  font-family: var(--heading-font);
+  font-feature-settings: "cswh" 1;
   font-size: 1.5em;
   font-weight: 500;
   padding: 1rem;
@@ -751,4 +752,8 @@ button,
     display: block;
     width: 100%;
   }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-feature-settings: "cswh" 1;
 }
