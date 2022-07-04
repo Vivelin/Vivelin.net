@@ -16,11 +16,11 @@
   --tooltip-background: white;
   --tooltip-text: black;
   --control-highlight: rgba(255, 255, 255, 0.1);
-  --ui-font: 'Barlow', sans-serif;
+  --ui-font: 'Alegreya Sans', sans-serif;
   --ui-font-size: 0.8em;
-  --text-font: 'Barlow', sans-serif;
+  --text-font: 'Alegreya Sans', sans-serif;
   --text-font-size: 1.125rem;
-  --heading-font: 'Work Sans', sans-serif;
+  --heading-font: 'Alegreya Sans', sans-serif;
   --heading-font-size: 0.8em;
   --code-font: 'Recursive', 'Rec Casual Mono', monospace;
   --code-font-size: 0.8em;
@@ -160,10 +160,6 @@ body {
     max-width: var(--page-width);
   }
 
-li {
-  margin-bottom: .625em;
-}
-
 ol.footnotes {
   padding-left: 0;
 }
@@ -195,10 +191,11 @@ ul.social {
   */
 .page-header {
   font-family: var(--heading-font);
-  font-feature-settings: "cswh" 1;
   font-size: 1.5em;
   font-weight: 500;
   padding: 1rem;
+  padding: 0 1rem;
+  line-height: 4rem;
 }
 
 .site-title {
@@ -252,11 +249,13 @@ h1 {
 
 h2 {
   font-size: 1.6rem;
+  font-variant-caps: small-caps;
   border-bottom: 1px solid var(--page-text-secondary);
 }
 
 h3 {
   font-size: 1.6rem;
+  font-variant-caps: small-caps;
 }
 
 a {
@@ -378,7 +377,7 @@ blockquote p:first-child {
 
 img.inline {
   max-height: 1.25em;
-  vertical-align: text-top;
+  transform: translateY(.25em);
   margin-right: .25em;
 }
 
@@ -752,8 +751,4 @@ button,
     display: block;
     width: 100%;
   }
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-feature-settings: "cswh" 1;
 }
