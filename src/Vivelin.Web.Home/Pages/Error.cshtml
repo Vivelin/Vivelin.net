@@ -4,14 +4,9 @@
     ViewData["Title"] = "Error";
 }
 
-<p class="page-message">An error occurred while processing your request.</p>
+<h3 class="page-message"><error-message type="@Response.StatusCode"></error-message></h3>
 
 @if (Model.ShowDetails)
 {
     <pre>@Model.ExceptionMessage</pre>
-    <aside>
-        <p>
-            <strong>Request ID:</strong> <code>@Model.RequestId</code>
-        </p>
-    </aside>
 }

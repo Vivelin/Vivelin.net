@@ -363,11 +363,10 @@ blockquote p:first-child {
   color: white;
 }
 
-.page-message {
-  grid-column: span 2;
+h3.page-message {
   font-family: var(--ui-font);
-  font-size: 3rem;
-  margin: 3em 0;
+  font-size: 5rem;
+  margin: 1em 0;
   text-align: center;
 }
 

@@ -14,25 +14,19 @@ namespace Vivelin.Web.Home.Pages
     [IgnoreAntiforgeryToken]
     public class ErrorModel : PageModel
     {
-        private readonly ILogger<ErrorModel> _logger;
         private readonly IWebHostEnvironment _environment;
-
-        public string RequestId { get; set; }
 
         public string ExceptionMessage { get; set; }
 
         public bool ShowDetails => _environment.IsDevelopment();
 
-        public ErrorModel(ILogger<ErrorModel> logger, IWebHostEnvironment environment)
+        public ErrorModel(IWebHostEnvironment environment)
         {
-            _logger = logger;
             _environment = environment;
         }
 
         public void OnGet()
         {
-            RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
-
             if (_environment.IsDevelopment())
             {
                 var exceptionHandler = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
@@ -45,8 +39,6 @@ namespace Vivelin.Web.Home.Pages
 
         public void OnPost()
         {
-            RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
-
             if (_environment.IsDevelopment())
             {
                 var exceptionHandler = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
