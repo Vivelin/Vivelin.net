@@ -2,21 +2,21 @@
   content: '\f09b';
   font-family: 'Font Awesome 5 Brands';
   font-style: normal;
-  padding-right: .25em;
+  padding-right: .125em;
 }
 
 a[href^="https://www.twitch.tv"]::before {
   content: '\f1e8';
   font-family: 'Font Awesome 5 Brands';
   font-style: normal;
-  padding-right: .25em;
+  padding-right: .125em;
 }
 
 a[href^="https://twitter.com"]::before {
   content: '\f099';
   font-family: 'Font Awesome 5 Brands';
   font-style: normal;
-  padding-right: .25em;
+  padding-right: .125em;
 }
 
 a[href^="https://www.youtube.com"]::before,
@@ -24,42 +24,42 @@ a[href^="https://youtu.be"]::before {
   content: '\f167';
   font-family: 'Font Awesome 5 Brands';
   font-style: normal;
-  padding-right: .25em;
+  padding-right: .125em;
 }
 
 a[href^="https://www.last.fm"]::before {
   content: '\f202';
   font-family: 'Font Awesome 5 Brands';
   font-style: normal;
-  padding-right: .25em;
+  padding-right: .125em;
 }
 
 a[href^="https://steamcommunity.com"]::before {
   content: '\f1b6';
   font-family: 'Font Awesome 5 Brands';
   font-style: normal;
-  padding-right: .25em;
+  padding-right: .125em;
 }
 
 a[href^="https://bandcamp.com"]::before {
   content: '\f2d5';
   font-family: 'Font Awesome 5 Brands';
   font-style: normal;
-  padding-right: .25em;
+  padding-right: .125em;
 }
 
 a[href^="https://stackoverflow.com"]::before {
   content: '\f16c';
   font-family: 'Font Awesome 5 Brands';
   font-style: normal;
-  padding-right: .25em;
+  padding-right: .125em;
 }
 
 a[href^="https://docs.microsoft.com"]::before {
   content: '\f3ca';
   font-family: 'Font Awesome 5 Brands';
   font-style: normal;
-  padding-right: .25em;
+  padding-right: .125em;
 }
 
 .ui a::before,
