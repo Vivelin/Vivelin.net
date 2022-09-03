@@ -16,13 +16,16 @@
   --tooltip-background: white;
   --tooltip-text: black;
   --control-highlight: rgba(255, 255, 255, 0.1);
-  --ui-font: 'Alegreya Sans', sans-serif;
+  --serif: 'Alegreya', serif;
+  --sans: 'Alegreya Sans', sans-serif;
+  --mono: 'Recursive', 'Rec Casual Mono', monospace;
+  --ui-font: var(--sans);
   --ui-font-size: 0.8em;
-  --text-font: 'Alegreya Sans', sans-serif;
-  --text-font-size: 1.125rem;
-  --heading-font: 'Alegreya Sans', sans-serif;
+  --text-font: var(--serif);
+  --text-font-size: 1.25rem;
+  --heading-font: var(--sans);
   --heading-font-size: 0.8em;
-  --code-font: 'Recursive', 'Rec Casual Mono', monospace;
+  --code-font: var(--mono);
   --code-font-size: 0.8em;
   --page-width: 40rem;
 }
@@ -249,13 +252,13 @@ h1 {
 
 h2 {
   font-size: 1.6rem;
-  font-variant-caps: small-caps;
+  /*font-variant-caps: small-caps;*/
   border-bottom: 1px solid var(--page-text-secondary);
 }
 
 h3 {
   font-size: 1.6rem;
-  font-variant-caps: small-caps;
+  /*font-variant-caps: small-caps;*/
 }
 
 a {
