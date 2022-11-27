@@ -1,16 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
+﻿using System.Diagnostics;
 
-namespace Vivelin.Web.Home.Twitch
+namespace Vivelin.Web.Home.Twitch;
+
+public class StreamsResponse
 {
-    public class StreamsResponse
-    {
-        [DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
-        public List<LiveStream> Data { get; set; }
+    [DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
+    public List<LiveStream> Data { get; set; } = new();
 
-        public PaginationInfo Pagination { get; set; }
-    }
+    public PaginationInfo? Pagination { get; set; }
 }

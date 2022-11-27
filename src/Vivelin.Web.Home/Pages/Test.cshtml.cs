@@ -5,12 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Vivelin.Web.Home.Pages
+namespace Vivelin.Web.Home.Pages;
+
+public class TestModel : PageModel
 {
-    public class TestModel : PageModel
+    public void OnGet()
     {
-        public void OnGet()
-        {
-        }
     }
 }

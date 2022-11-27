@@ -1,58 +1,54 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+
 using Vivelin.Web.Data;
 
-namespace Vivelin.Web.Home.Pages.Admin.Quotes
+namespace Vivelin.Web.Home.Pages.Admin.Quotes;
+
+public class DeleteModel : PageModel
 {
-    public class DeleteModel : PageModel
+    private readonly DataContext _context;
+
+    public DeleteModel(DataContext context)
     {
-        private readonly Vivelin.Web.Data.DataContext _context;
+        _context = context;
+    }
 
-        public DeleteModel(Vivelin.Web.Data.DataContext context)
+    [BindProperty]
+    public Quote? Quote { get; set; }
+
+    public async Task<IActionResult> OnGetAsync(int? id)
+    {
+        if (id == null)
         {
-            _context = context;
+            return NotFound();
         }
 
-        [BindProperty]
-        public Quote Quote { get; set; }
+        Quote = await _context.Quotes.FirstOrDefaultAsync(m => m.Id == id);
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        if (Quote == null)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            return NotFound();
+        }
+        return Page();
+    }
 
-            Quote = await _context.Quotes.FirstOrDefaultAsync(m => m.Id == id);
-
-            if (Quote == null)
-            {
-                return NotFound();
-            }
-            return Page();
+    public async Task<IActionResult> OnPostAsync(int? id)
+    {
+        if (id == null)
+        {
+            return NotFound();
         }
 
-        public async Task<IActionResult> OnPostAsync(int? id)
+        Quote = await _context.Quotes.FindAsync(id);
+
+        if (Quote != null)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            Quote = await _context.Quotes.FindAsync(id);
-
-            if (Quote != null)
-            {
-                _context.Quotes.Remove(Quote);
-                await _context.SaveChangesAsync();
-            }
-
-            return RedirectToPage("./Index");
+            _context.Quotes.Remove(Quote);
+            await _context.SaveChangesAsync();
         }
+
+        return RedirectToPage("./Index");
     }
 }

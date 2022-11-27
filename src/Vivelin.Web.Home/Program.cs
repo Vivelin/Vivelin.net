@@ -13,35 +13,34 @@ using System.Threading.Tasks;
 
 using Vivelin.Web.Data;
 
-namespace Vivelin.Web.Home
+namespace Vivelin.Web.Home;
+
+public static class Program
 {
-    public static class Program
+    public async static Task Main(string[] args)
     {
-        public async static Task Main(string[] args)
+        var host = CreateHostBuilder(args).Build();
+        using (var scope = host.Services.CreateScope())
         {
-            var host = CreateHostBuilder(args).Build();
-            using (var scope = host.Services.CreateScope())
+            await MigrateDatabaseAsync(scope);
+        }
+        await host.RunAsync();
+    }
+
+    public static IHostBuilder CreateHostBuilder(string[] args)
+    {
+        return Host.CreateDefaultBuilder(args)
+            .ConfigureWebHostDefaults(webBuilder =>
             {
-                await MigrateDatabaseAsync(scope);
-            }
-            await host.RunAsync();
-        }
+                webBuilder.UseStartup<Startup>();
+            });
+    }
 
-        public static IHostBuilder CreateHostBuilder(string[] args)
-        {
-            return Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
-        }
+    private static Task MigrateDatabaseAsync(IServiceScope serviceScope)
+    {
+        var lifetime = serviceScope.ServiceProvider.GetRequiredService<IHostApplicationLifetime>();
+        var context = serviceScope.ServiceProvider.GetRequiredService<DataContext>();
 
-        private static Task MigrateDatabaseAsync(IServiceScope serviceScope)
-        {
-            var lifetime = serviceScope.ServiceProvider.GetRequiredService<IHostApplicationLifetime>();
-            var context = serviceScope.ServiceProvider.GetRequiredService<DataContext>();
-
-            return context.Database.MigrateAsync(lifetime.ApplicationStopping);
-        }
+        return context.Database.MigrateAsync(lifetime.ApplicationStopping);
     }
 }

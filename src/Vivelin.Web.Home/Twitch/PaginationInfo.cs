@@ -1,7 +1,6 @@
-﻿namespace Vivelin.Web.Home.Twitch
+﻿namespace Vivelin.Web.Home.Twitch;
+
+public class PaginationInfo
 {
-    public class PaginationInfo
-    {
-        public string Cursor { get; set; }
-    }
+    public string? Cursor { get; set; }
 }

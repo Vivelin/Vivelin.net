@@ -1,22 +1,15 @@
-﻿using Microsoft.AspNetCore.Routing;
+﻿using System.Text.RegularExpressions;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+namespace Vivelin.Web.Home;
 
-namespace Vivelin.Web.Home
+internal class SlugParameterTransformer : IOutboundParameterTransformer
 {
-    internal class SlugParameterTransformer : IOutboundParameterTransformer
+    public string? TransformOutbound(object? value)
     {
-        public string? TransformOutbound(object? value)
-        {
-            if (value == null)
-                return null;
+        if (value == null || value.ToString() == null)
+            return null;
 
-            return Regex.Replace(value.ToString(), "([a-z])([A-Z])", "$1-$2")
-                        .ToLowerInvariant();
-        }
+        return Regex.Replace(value.ToString()!, "([a-z])([A-Z])", "$1-$2")
+                    .ToLowerInvariant();
     }
 }

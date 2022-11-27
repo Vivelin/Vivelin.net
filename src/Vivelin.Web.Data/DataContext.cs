@@ -2,19 +2,18 @@
 
 using System;
 
-namespace Vivelin.Web.Data
+namespace Vivelin.Web.Data;
+
+public class DataContext : DbContext
 {
-    public class DataContext : DbContext
+    public DataContext(DbContextOptions options)
+        : base(options)
     {
-        public DataContext(DbContextOptions options)
-            : base(options)
-        {
-        }
+    }
 
-        public virtual DbSet<Quote> Quotes { get; set; } = null!;
+    public virtual DbSet<Quote> Quotes { get; set; } = null!;
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-        }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
     }
 }
