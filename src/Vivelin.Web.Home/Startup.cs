@@ -43,8 +43,8 @@ public class Startup
             })
             .AddTwitch(options =>
             {
-                options.ClientId = Configuration["Twitch:ClientId"];
-                options.ClientSecret = Configuration["Twitch:ClientSecret"];
+                options.ClientId = Configuration["Twitch:ClientId"] ?? throw new Exception("Invalid configuration: Twitch:ClientId is missing");
+                options.ClientSecret = Configuration["Twitch:ClientSecret"] ?? throw new Exception("Invalid configuration: Twitch:ClientSecret is missing");
                 options.SaveTokens = true;
                 options.Scope.Add("user:read:follows");
                 options.Scope.Add("user:read:subscriptions");

@@ -55,7 +55,7 @@
             Quote = await GetRandomQuoteAsync();
     }
 
-    private async Task<Vivelin.Web.Data.Quote> GetRandomQuoteAsync()
+    private async Task<Vivelin.Web.Data.Quote?> GetRandomQuoteAsync()
     {
         var count = await Context.Quotes.CountAsync();
         var id = new Random().Next(count);
