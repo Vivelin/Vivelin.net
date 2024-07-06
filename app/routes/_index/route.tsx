@@ -1,8 +1,10 @@
-import type { MetaFunction } from '@remix-run/node';
-import { Link, useSearchParams } from '@remix-run/react';
-import classNames from 'classnames';
+import type { LinksFunction, MetaFunction } from '@remix-run/node';
+import { useSearchParams } from '@remix-run/react';
 import { SearchLink } from '~/components/SearchLink';
 import { constrain } from '~/util/strings';
+import styles from './styles.css?url';
+
+export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }];
 
 export const meta: MetaFunction = () => {
     return [{ title: 'Vivelin.net' }];
@@ -32,6 +34,14 @@ export default function Index() {
                     Laura Verdoes
                 </SearchLink>
             </h1>
+            {mode === 'online' ?
+                <article>
+                    <p>Text about me online goes here.</p>
+                </article>
+            :   <article>
+                    <p>Text about me in person goes here.</p>
+                </article>
+            }
         </main>
     );
 }
