@@ -5,11 +5,16 @@ website, [Vivelin.net]. Currently still a Razor Pages ASP.NET Core app, I’m
 rebuilding it in [Remix] with an ASP.NET Core API backend to make it easier to
 add both client-side functionality and new content.
 
+## Prequisites
+
+- [Bun]
+
 ## Quick start
 
 Run the dev server:
 
 ```sh
+bun install
 bun run dev
 ```
 
@@ -32,4 +37,5 @@ bun start
 
 [Vivelin.net]: https://vivelin.net/
 [Remix]: https://remix.run/
+[Bun]: https://bun.sh/
 
