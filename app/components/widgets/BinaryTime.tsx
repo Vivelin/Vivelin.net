@@ -20,7 +20,7 @@ export function BinaryTime({
     return (
         <div className={className} {...props}>
             <div className="binary-clock-hours">
-                <BinaryDisplay value={hours} length={5} />
+                <BinaryDisplay value={hours} length={6} />
             </div>
             <div className="binary-clock-minutes">
                 <BinaryDisplay value={minutes} length={6} />
