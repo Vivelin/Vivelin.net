@@ -5,6 +5,7 @@ import {
     Scripts,
     ScrollRestoration,
 } from '@remix-run/react';
+import { BinaryClock } from './components/BinaryClock';
 
 export function Layout({ children }: { children: React.ReactNode }) {
     return (
@@ -20,6 +21,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             </head>
             <body>
                 {children}
+                <BinaryClock />
                 <ScrollRestoration />
                 <Scripts />
             </body>
