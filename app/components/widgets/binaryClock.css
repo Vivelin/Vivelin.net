@@ -1,0 +1,11 @@
+.binaryClock {
+  font-variant-numeric: tabular-nums, lining-nums;
+}
+
+.bit[data-bit='1'] {
+  font-weight: 600;
+}
+
+.bit[data-bit='0'] {
+  opacity: 0.6;
+}

@@ -1,4 +1,5 @@
 import { HTMLAttributes, ReactNode } from 'react';
+import './binaryClock.css';
 
 export type BinaryDisplayProps = {
     value: number;
@@ -36,7 +37,7 @@ export function BinaryDisplay({
                 className="bit"
                 data-bit-n={n}
                 data-bit-decimal={Math.pow(2, n)}
-                data-bit-value={bit ? 1 : 0}
+                data-bit={bit ? 1 : 0}
             >
                 {bit ? on : off}
             </span>
