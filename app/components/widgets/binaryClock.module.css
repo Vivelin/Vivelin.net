@@ -1,9 +1,0 @@
-.binaryClock {
-  display: inline-block;
-}
-
-.binaryHours,
-.binaryMinutes,
-.binarySeconds {
-  text-align: right;
-}

@@ -1,6 +1,5 @@
 import { HTMLAttributes } from 'react';
 import { BinaryDisplay } from './BinaryDisplay';
-import styles from './binaryClock.module.css';
 
 export type BinaryTimeProps = {
     date?: Date;
@@ -11,7 +10,7 @@ export type BinaryTimeProps = {
  */
 export function BinaryTime({
     date = new Date(),
-    className = styles.binaryClock,
+    className = 'binary-clock',
     ...props
 }: BinaryTimeProps) {
     const hours = date.getHours();
@@ -20,13 +19,13 @@ export function BinaryTime({
 
     return (
         <div className={className} {...props}>
-            <div className={styles.binaryHours}>
+            <div className="binary-clock-hours">
                 <BinaryDisplay value={hours} length={5} />
             </div>
-            <div className={styles.binaryMinutes}>
+            <div className="binary-clock-minutes">
                 <BinaryDisplay value={minutes} length={6} />
             </div>
-            <div className={styles.binarySeconds}>
+            <div className="binary-clock-seconds">
                 <BinaryDisplay value={seconds} length={6} />
             </div>
         </div>
