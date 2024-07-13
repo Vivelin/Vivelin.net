@@ -5,7 +5,7 @@ import {
     Scripts,
     ScrollRestoration,
 } from '@remix-run/react';
-import { BinaryClock } from './components/widgets/BinaryClock';
+import { BinaryClock } from './components/BinaryClock';
 
 export function Layout({ children }: { children: React.ReactNode }) {
     return (

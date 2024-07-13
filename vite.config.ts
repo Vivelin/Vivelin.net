@@ -1,6 +1,6 @@
-import { vitePlugin as remix } from '@remix-run/dev';
-import { defineConfig } from 'vite';
-import tsconfigPaths from 'vite-tsconfig-paths';
+import { vitePlugin as remix } from "@remix-run/dev";
+import { defineConfig } from "vite";
+import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
     plugins: [
@@ -13,16 +13,5 @@ export default defineConfig({
         }),
         tsconfigPaths(),
     ],
-    css: {
-        modules: {
-            localsConvention: 'camelCaseOnly',
-            generateScopedName: (name, fileName, css) => {
-                const module = fileName
-                    .replace(/^.*[\\/]/, '')
-                    .replace(/\..*/, '');
-                return `${module}__${name}`;
-            },
-        },
-    },
 });
 
