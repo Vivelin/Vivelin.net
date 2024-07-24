@@ -1,5 +1,7 @@
-.binaryClock {
-  font-variant-numeric: tabular-nums, lining-nums;
+.binaryClock,
+.hexClock {
+  font-family: sans-serif;
+  font-variant-numeric: tabular-nums lining-nums;
 }
 
 .bit[data-bit='1'] {

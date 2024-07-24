@@ -10,7 +10,7 @@ export type BinaryTimeProps = {
  */
 export function BinaryTime({
     date = new Date(),
-    className = 'binary-clock',
+    className = 'binaryClock',
     ...props
 }: BinaryTimeProps) {
     const hours = date.getHours();
@@ -19,14 +19,14 @@ export function BinaryTime({
 
     return (
         <div className={className} {...props}>
-            <div className="binary-clock-hours">
-                <BinaryDisplay value={hours} length={6} />
+            <div className="hours">
+                <BinaryDisplay value={hours} length={6} on="●" off="○" />
             </div>
-            <div className="binary-clock-minutes">
-                <BinaryDisplay value={minutes} length={6} />
+            <div className="minutes">
+                <BinaryDisplay value={minutes} length={6} on="●" off="○" />
             </div>
-            <div className="binary-clock-seconds">
-                <BinaryDisplay value={seconds} length={6} />
+            <div className="seconds">
+                <BinaryDisplay value={seconds} length={6} on="●" off="○" />
             </div>
         </div>
     );
