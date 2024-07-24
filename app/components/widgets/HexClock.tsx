@@ -8,5 +8,5 @@ export default function HexClock(props: Omit<HexTimeProps, 'date'>) {
         setDate(new Date());
     }, 1318);
 
-    return <HexTime date={date} {...props} />;
+    return <HexTime suppressHydrationWarning date={date} {...props} />;
 }
