@@ -1,4 +1,4 @@
-import { HTMLAttributes } from 'react';
+import { HTMLAttributes, useMemo } from 'react';
 import { BinaryDisplay } from './BinaryDisplay';
 
 export type BinaryTimeProps = {
@@ -19,14 +19,19 @@ export function BinaryTime({
     const minutes = utc ? date.getUTCMinutes() : date.getMinutes();
     const seconds = utc ? date.getUTCSeconds() : date.getSeconds();
 
+    const hoursDisplay = useMemo(
+        () => <BinaryDisplay value={hours} length={6} on="●" off="○" />,
+        [hours],
+    );
+    const minutesDisplay = useMemo(
+        () => <BinaryDisplay value={minutes} length={6} on="●" off="○" />,
+        [minutes],
+    );
+
     return (
         <div className={className} {...props}>
-            <div className="hours">
-                <BinaryDisplay value={hours} length={6} on="●" off="○" />
-            </div>
-            <div className="minutes">
-                <BinaryDisplay value={minutes} length={6} on="●" off="○" />
-            </div>
+            <div className="hours">{hoursDisplay}</div>
+            <div className="minutes">{minutesDisplay}</div>
             <div className="seconds">
                 <BinaryDisplay value={seconds} length={6} on="●" off="○" />
             </div>
