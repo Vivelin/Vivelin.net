@@ -1,5 +1,6 @@
 .binaryClock,
-.hexClock {
+.hexClock,
+.unixClock {
   font-family: sans-serif;
   font-variant-numeric: tabular-nums lining-nums;
 }

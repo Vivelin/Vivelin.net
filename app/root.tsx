@@ -7,6 +7,7 @@ import {
 } from '@remix-run/react';
 import { BinaryClock } from './components/widgets/BinaryClock';
 import HexClock from './components/widgets/HexClock';
+import { UnixClock } from './components/widgets/UnixClock';
 
 export function Layout({ children }: { children: React.ReactNode }) {
     return (
@@ -24,6 +25,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 {children}
                 <BinaryClock />
                 <HexClock />
+                <UnixClock />
                 <BinaryClock utc />
                 <HexClock utc />
                 <ScrollRestoration />
