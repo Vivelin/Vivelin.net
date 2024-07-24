@@ -24,6 +24,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 {children}
                 <BinaryClock />
                 <HexClock />
+                <HexClock utc />
                 <ScrollRestoration />
                 <Scripts />
             </body>
