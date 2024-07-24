@@ -3,6 +3,7 @@ import { BinaryDisplay } from './BinaryDisplay';
 
 export type BinaryTimeProps = {
     date?: Date;
+    utc?: boolean;
 } & HTMLAttributes<HTMLDivElement>;
 
 /**
@@ -10,12 +11,13 @@ export type BinaryTimeProps = {
  */
 export function BinaryTime({
     date = new Date(),
+    utc = false,
     className = 'binaryClock',
     ...props
 }: BinaryTimeProps) {
-    const hours = date.getHours();
-    const minutes = date.getMinutes();
-    const seconds = date.getSeconds();
+    const hours = utc ? date.getUTCHours() : date.getHours();
+    const minutes = utc ? date.getUTCMinutes() : date.getMinutes();
+    const seconds = utc ? date.getUTCSeconds() : date.getSeconds();
 
     return (
         <div className={className} {...props}>
