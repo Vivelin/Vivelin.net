@@ -12,5 +12,5 @@ export function BinaryClock({ ...props }: Omit<BinaryTimeProps, 'date'>) {
         setDate(new Date());
     }, 1000);
 
-    return <BinaryTime date={date} {...props} />;
+    return <BinaryTime suppressHydrationWarning date={date} {...props} />;
 }
