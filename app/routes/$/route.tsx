@@ -6,6 +6,8 @@ import {
     useLoaderData,
     useRouteError,
 } from '@remix-run/react';
+import Markdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw';
 import type { Page } from './page';
 
 export async function loader({ params }: LoaderFunctionArgs) {
@@ -45,13 +47,22 @@ export default function Page() {
     // TODO: Generic page metadata in a header/hgroup element? Or maybe separate articles and pages?
     return (
         <main>
-            <article dangerouslySetInnerHTML={{ __html: page.content }} />
+            <article>
+                <Markdown
+                    rehypePlugins={[rehypeRaw]}
+                    remarkRehypeOptions={{ allowDangerousHtml: true }}
+                >
+                    {page.content}
+                </Markdown>
+            </article>
         </main>
     );
 }
 
 export function ErrorBoundary() {
     const error = useRouteError();
+
+    // TODO: Shouldn't most of this (outside of 404 and maybe 401/403) be in the root?
 
     if (isRouteErrorResponse(error)) {
         if (error.status === 404) {
