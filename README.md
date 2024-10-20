@@ -11,6 +11,15 @@ add both client-side functionality and new content.
 
 ## Quick start
 
+Clone the API from <https://github.com/Vivelin/Api.vivelin.net> and run it.
+
+Create an `.env` file in the root using the follow format:
+
+```
+API_URL=https://localhost:7072
+NODE_TLS_REJECT_UNAUTHORIZED=0
+```
+
 Run the dev server:
 
 ```sh
@@ -38,4 +47,3 @@ bun start
 [Vivelin.net]: https://vivelin.net/
 [Remix]: https://remix.run/
 [Bun]: https://bun.sh/
-
