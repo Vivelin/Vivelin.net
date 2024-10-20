@@ -1,11 +1,18 @@
 import {
     Links,
     Meta,
+    MetaFunction,
     Outlet,
     Scripts,
     ScrollRestoration,
 } from '@remix-run/react';
 import Clock from './components/widgets/time/Clock';
+
+export const meta: MetaFunction = () => {
+    // Note: prefer adding meta tags as everything here will be lost if a route has its own meta export.
+    // The title is just here for routes that don't have a meta export.
+    return [{ title: 'Vivelin.net' }];
+};
 
 export function Layout({ children }: { children: React.ReactNode }) {
     return (
