@@ -2,7 +2,7 @@ import { LoaderFunctionArgs } from '@remix-run/node';
 import { json, MetaFunction, useLoaderData } from '@remix-run/react';
 
 export async function loader({ params }: LoaderFunctionArgs) {
-    const page = params.page;
+    const page = params['*'];
     // ...
     return json({ page }); // TODO: I shouldn't just reply with the input page here. If the page doesn't exist, we should simply throw a 404 here.
 }
