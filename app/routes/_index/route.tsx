@@ -1,6 +1,5 @@
 import type { LinksFunction, MetaFunction } from '@remix-run/node';
-import { useSearchParams } from '@remix-run/react';
-import { SearchLink } from '~/components/SearchLink';
+import { Link, useSearchParams } from '@remix-run/react';
 import { constrain } from '~/util/strings';
 import styles from './styles.css?url';
 
@@ -18,21 +17,17 @@ export default function Index() {
     return (
         <main>
             <h1>
-                <SearchLink
-                    searchTo={{ mode: 'online' }}
-                    replace
-                    preventScrollReset
-                >
+                <Link to={{ search: 'mode=online' }} replace preventScrollReset>
                     Vivelin
-                </SearchLink>
+                </Link>
                 <span> / </span>
-                <SearchLink
-                    searchTo={{ mode: 'personal' }}
+                <Link
+                    to={{ search: 'mode=personal' }}
                     replace
                     preventScrollReset
                 >
                     Laura Verdoes
-                </SearchLink>
+                </Link>
             </h1>
             {mode === 'online' ?
                 <article>
@@ -45,4 +40,3 @@ export default function Index() {
         </main>
     );
 }
-
