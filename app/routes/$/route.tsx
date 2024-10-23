@@ -12,6 +12,7 @@ import rehypeRaw from 'rehype-raw';
 import { sendApiRequest } from '~/apiClient.server';
 import type { Page } from './page';
 import { BackendError } from '~/errors';
+import { getMetaTags } from '~/meta';
 
 export async function loader({ params }: LoaderFunctionArgs) {
     const slug = params['*'];
@@ -30,12 +31,11 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
     if (!data || !data.page) return [{ title: 'Vivelin.net' }];
 
     return [
-        { title: `${data.page.title} — Vivelin.net` },
-        { name: 'og:site_name', content: 'Vivelin.net' },
-        { name: 'og:locale', content: 'en_US' },
-        { name: 'og:type', content: 'website' }, // Maybe should be article once we have all the proper metadata?
-        { name: 'og:title', content: data.page.title },
-        { name: 'og:description', content: data.page.description },
+        ...getMetaTags(data.page.title, {
+            description:
+                data.page.description ||
+                'Nothing to see here, please move along.',
+        }),
     ];
 };
 
