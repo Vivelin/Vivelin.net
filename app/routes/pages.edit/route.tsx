@@ -1,8 +1,10 @@
-import { json, LoaderFunctionArgs } from '@remix-run/node';
+import { ActionFunctionArgs, json, LoaderFunctionArgs } from '@remix-run/node';
 import { sendApiRequest } from '~/apiClient.server';
 import { Page } from '../$/page';
 import { BackendError } from '~/errors';
-import { useLoaderData } from '@remix-run/react';
+import { Form, redirect, useLoaderData } from '@remix-run/react';
+import TextField from '~/components/forms/TextField';
+import Button from '~/components/forms/Button';
 
 export async function loader({ request }: LoaderFunctionArgs) {
     const url = new URL(request.url);
@@ -18,6 +20,14 @@ export async function loader({ request }: LoaderFunctionArgs) {
     return json({ page });
 }
 
+export async function action({ request }: ActionFunctionArgs) {
+    const formData = await request.formData();
+
+    const originalSlug = formData.get('page');
+
+    return redirect(`/${originalSlug}`);
+}
+
 export default function EditPage() {
     const { page } = useLoaderData<typeof loader>();
 
@@ -31,6 +41,29 @@ export default function EditPage() {
                     <code>{page.slug}</code>
                 </p>
             </hgroup>
+
+            <Form method="POST">
+                <input type="hidden" name="page" value={page.slug} />
+                <TextField
+                    label="Title"
+                    name="title"
+                    defaultValue={page.title}
+                />
+                <TextField label="Slug" name="slug" defaultValue={page.slug} />
+                <TextField
+                    multiLine
+                    label="Description"
+                    name="description"
+                    defaultValue={page.description}
+                />
+                <TextField
+                    multiLine
+                    label="Content"
+                    name="content"
+                    defaultValue={page.content}
+                />
+                <Button type="submit">Save</Button>
+            </Form>
         </main>
     );
 }
