@@ -8,4 +8,10 @@ export type Page = {
     content: string;
 
     description?: string;
+
+    publishedOn?: Date;
+
+    updatedOn?: Date;
+
+    expiresOn?: Date;
 };

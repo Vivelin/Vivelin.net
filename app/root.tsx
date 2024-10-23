@@ -27,8 +27,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 <Links />
             </head>
             <body>
+                <h1>Vivelin.net</h1>
                 {children}
-                <Clock />
+                <footer>
+                    <Clock />
+                </footer>
                 <ScrollRestoration />
                 <Scripts />
             </body>

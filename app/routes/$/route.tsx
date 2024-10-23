@@ -2,29 +2,27 @@ import { LoaderFunctionArgs } from '@remix-run/node';
 import {
     isRouteErrorResponse,
     json,
+    Link,
     MetaFunction,
     useLoaderData,
     useRouteError,
 } from '@remix-run/react';
 import Markdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
+import { sendApiRequest } from '~/apiClient.server';
 import type { Page } from './page';
+import { BackendError } from '~/errors';
 
 export async function loader({ params }: LoaderFunctionArgs) {
     const slug = params['*'];
 
-    const apiUrl = new URL(`/pages/${slug}`, process.env.API_URL);
-    const response = await fetch(apiUrl);
-
-    if (response.status === 404) {
-        throw new Response('Not Found', { status: 404 });
-    } else if (!response.ok) {
-        throw new Response(response.statusText, {
-            status: 502,
-        });
+    const page = await sendApiRequest<Page>('GET', `/pages/${slug}`);
+    if (!page) {
+        throw new BackendError(
+            `Unexpected empty response from GET /pages/${slug}`,
+        );
     }
 
-    const page = (await response.json()) as Page;
     return json({ page });
 }
 
@@ -48,12 +46,32 @@ export default function Page() {
     return (
         <main>
             <article>
-                <Markdown
-                    rehypePlugins={[rehypeRaw]}
-                    remarkRehypeOptions={{ allowDangerousHtml: true }}
-                >
-                    {page.content}
-                </Markdown>
+                <header>
+                    <hgroup>
+                        <h1>{page.title}</h1>
+                    </hgroup>
+                    <p>
+                        Published
+                        <time dateTime={page.publishedOn}>
+                            {page.publishedOn}
+                        </time>
+                    </p>
+                    <p>
+                        <Link
+                            to={`/pages/edit?page=${encodeURIComponent(page.slug)}`}
+                        >
+                            Edit this page
+                        </Link>
+                    </p>
+                </header>
+                <section>
+                    <Markdown
+                        rehypePlugins={[rehypeRaw]}
+                        remarkRehypeOptions={{ allowDangerousHtml: true }}
+                    >
+                        {page.content}
+                    </Markdown>
+                </section>
             </article>
         </main>
     );
