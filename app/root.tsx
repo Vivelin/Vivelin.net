@@ -1,11 +1,18 @@
 import {
+    Await,
+    defer,
     Links,
     Meta,
     MetaFunction,
     Outlet,
     Scripts,
     ScrollRestoration,
+    useRouteLoaderData,
 } from '@remix-run/react';
+import { Suspense } from 'react';
+import { sendApiRequest } from './apiClient.server';
+import BlockQuote from './components/widgets/quote/BlockQuote';
+import { Quote } from './components/widgets/quote/Quote';
 import Clock from './components/widgets/time/Clock';
 
 export const meta: MetaFunction = () => {
@@ -14,7 +21,17 @@ export const meta: MetaFunction = () => {
     return [{ title: 'Vivelin.net' }];
 };
 
+export async function loader() {
+    const qotd = sendApiRequest<Quote>('GET', '/quotes/random');
+
+    return defer({
+        quote: qotd,
+    });
+}
+
 export function Layout({ children }: { children: React.ReactNode }) {
+    const data = useRouteLoaderData<typeof loader>('root');
+
     return (
         <html lang="en-US">
             <head>
@@ -31,6 +48,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 {children}
                 <footer>
                     <Clock />
+                    {data && (
+                        <Suspense>
+                            <Await resolve={data.quote}>
+                                {(quote) => <BlockQuote quote={quote} />}
+                            </Await>
+                        </Suspense>
+                    )}
                 </footer>
                 <ScrollRestoration />
                 <Scripts />

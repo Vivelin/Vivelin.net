@@ -1,0 +1,11 @@
+.citation {
+  cite {
+    .title {
+      font-style: normal;
+    }
+
+    .series {
+      font-style: italic;
+    }
+  }
+}
