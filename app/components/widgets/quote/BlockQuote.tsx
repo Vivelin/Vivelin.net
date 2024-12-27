@@ -20,11 +20,11 @@ export default function BlockQuote({ quote }: BlockQuoteProps) {
             <figcaption>
                 <p>
                     — <span className="context">{quote.context}. </span>
-                    <Citation work={quote.source} />
+                    <Citation work={quote.source} quote={quote} />
                 </p>
                 {quote.example && (
                     <p>
-                        See: <Citation work={quote.example} />
+                        See: <Citation work={quote.example} quote={quote} />
                     </p>
                 )}
             </figcaption>
