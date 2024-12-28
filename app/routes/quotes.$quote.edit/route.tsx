@@ -1,22 +1,95 @@
-import { Form, Link, useRouteLoaderData } from '@remix-run/react';
+import { ActionFunctionArgs } from '@remix-run/node';
+import {
+    Form,
+    json,
+    Link,
+    redirect,
+    useActionData,
+    useLoaderData,
+    useRouteLoaderData,
+} from '@remix-run/react';
 import Button from '~/components/forms/Button';
 import TextField from '~/components/forms/TextField';
+import { Quote } from '~/components/widgets/quote/Quote';
 import { loader as quotePageLoader } from '../quotes.$quote/route';
+import { FieldRequiredError } from '~/errors';
+
+type QuoteRequest = Omit<Quote, 'source' | 'example'>;
+
+export async function action({ request }: ActionFunctionArgs) {
+    try {
+        const formData = await request.formData();
+        const slug = required(formData, 'slug');
+        // TODO: Collect errors and return all errors at once
+        const quote: QuoteRequest = {
+            id: parseInt(required(formData, 'id'), 10),
+            slug: required(formData, 'new-slug'),
+            context: optional(formData, 'quote-context'),
+            text: required(formData, 'quote-text'),
+            sourceId: parseInt(required(formData, 'quote-source'), 10),
+            exampleId:
+                parseInt(optional(formData, 'quote-example')!, 10) || undefined,
+            page: parseInt(optional(formData, 'quote-page')!, 10) || undefined,
+            location:
+                parseInt(optional(formData, 'quote-location')!, 10) ||
+                undefined,
+            timestamp: optional(formData, 'quote-timestamp') || undefined,
+        };
+
+        console.log(slug, quote);
+
+        // sendApiRequest with body
+
+        return redirect(`/quotes`);
+    } catch (err) {
+        if (err instanceof FieldRequiredError) {
+            return json({ error: err.message, errorField: err.field });
+        } else {
+            throw new Error('quotes.$quote.edit: Unexpected error in action', {
+                cause: err,
+            });
+        }
+    }
+
+    function required(formData: FormData, name: string): string {
+        const value = formData.get(name);
+        if (typeof value !== 'string') {
+            throw new FieldRequiredError(name);
+        }
+
+        return value;
+    }
+
+    function optional(formData: FormData, name: string): string | undefined {
+        const value = formData.get(name);
+        if (value && typeof value !== 'string') {
+            throw new Error(
+                `Expected form data with key '${name}' to be a string, but got '${typeof value}'.`,
+            );
+        }
+
+        return value ?? undefined;
+    }
+}
 
 export default function QuotePageEdit() {
-    const data = useRouteLoaderData<typeof quotePageLoader>(
+    const actionData = useActionData<typeof action>();
+    const parentData = useRouteLoaderData<typeof quotePageLoader>(
         'routes/quotes.$quote',
     );
 
-    if (!data?.quote) {
+    if (!parentData?.quote) {
         return <p>Quote not found.</p>; // Callout?
     }
 
-    const quote = data.quote;
+    const quote = parentData.quote;
     return (
-        <Form>
+        <Form method="post">
             <input type="hidden" name="id" value={quote.id} />
             <input type="hidden" name="slug" value={quote.slug} />
+
+            {/* Callout */}
+            <p>{actionData?.error}</p>
 
             <TextField
                 label="Slug (required)"
