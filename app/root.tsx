@@ -1,6 +1,6 @@
 import {
     Await,
-    defer,
+    json,
     Links,
     Meta,
     MetaFunction,
@@ -22,9 +22,9 @@ export const meta: MetaFunction = () => {
 };
 
 export async function loader() {
-    const qotd = sendApiRequest<Quote>('GET', '/quotes/random');
+    const qotd = await sendApiRequest<Quote>('GET', '/quotes/random');
 
-    return defer({
+    return json({
         quote: qotd,
     });
 }
@@ -48,13 +48,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 {children}
                 <footer>
                     <Clock />
-                    {data && (
-                        <Suspense>
-                            <Await resolve={data.quote}>
-                                {(quote) => <BlockQuote quote={quote} />}
-                            </Await>
-                        </Suspense>
-                    )}
+                    {data && <BlockQuote quote={data.quote} />}
                 </footer>
                 <ScrollRestoration />
                 <Scripts />
