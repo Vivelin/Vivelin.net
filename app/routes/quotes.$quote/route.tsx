@@ -1,7 +1,6 @@
 import { json, LoaderFunctionArgs } from '@remix-run/node';
-import { Link, useLoaderData } from '@remix-run/react';
+import { Link, Outlet, useLoaderData } from '@remix-run/react';
 import { sendApiRequest } from '~/apiClient.server';
-import BlockQuote from '~/components/widgets/quote/BlockQuote';
 import { Quote } from '~/components/widgets/quote/Quote';
 
 export async function loader({ params }: LoaderFunctionArgs) {
@@ -24,8 +23,7 @@ export default function QuotePage() {
 
                     <h1>Quote {quote?.id}</h1>
                 </header>
-
-                <BlockQuote quote={quote} />
+                <Outlet />
             </article>
         </main>
     );
