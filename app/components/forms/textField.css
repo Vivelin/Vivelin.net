@@ -1,0 +1,10 @@
+.react-aria-TextField {
+  display: flex;
+  flex-direction: column;
+
+  margin: 1rem 0;
+}
+
+label {
+  font-weight: 700;
+}

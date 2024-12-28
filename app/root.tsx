@@ -12,6 +12,7 @@ import { sendApiRequest } from './apiClient.server';
 import BlockQuote from './components/widgets/quote/BlockQuote';
 import { Quote } from './components/widgets/quote/Quote';
 import Clock from './components/widgets/time/Clock';
+import './root.css';
 
 export const meta: MetaFunction = () => {
     // Note: prefer adding meta tags as everything here will be lost if a route has its own meta export.
