@@ -20,7 +20,10 @@ export default function BlockQuote({ quote }: BlockQuoteProps) {
             </blockquote>
             <figcaption>
                 <p>
-                    — <span className="context">{quote.context}. </span>
+                    —{' '}
+                    {quote.context && (
+                        <span className="context">{quote.context}. </span>
+                    )}
                     <Citation work={quote.source} quote={quote} />
                 </p>
                 {quote.example && (

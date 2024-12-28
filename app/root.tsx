@@ -1,5 +1,4 @@
 import {
-    Await,
     json,
     Links,
     Meta,
@@ -9,7 +8,6 @@ import {
     ScrollRestoration,
     useRouteLoaderData,
 } from '@remix-run/react';
-import { Suspense } from 'react';
 import { sendApiRequest } from './apiClient.server';
 import BlockQuote from './components/widgets/quote/BlockQuote';
 import { Quote } from './components/widgets/quote/Quote';
