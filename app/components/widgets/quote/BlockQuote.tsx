@@ -2,6 +2,7 @@ import Markdown from 'react-markdown';
 import Citation from './Citation';
 import { Quote } from './Quote';
 import rehypeRaw from 'rehype-raw';
+import classNames from 'classnames';
 
 type BlockQuoteProps = {
     quote: Quote | undefined;
@@ -13,7 +14,7 @@ export default function BlockQuote({ quote }: BlockQuoteProps) {
     }
 
     return (
-        <figure>
+        <figure className={classNames('blockquote', quote.slug)}>
             <blockquote>
                 <Markdown rehypePlugins={[rehypeRaw]}>{quote.text}</Markdown>
             </blockquote>
