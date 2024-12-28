@@ -20,11 +20,16 @@ export const meta: MetaFunction = () => {
 };
 
 export async function loader() {
-    const qotd = await sendApiRequest<Quote>('GET', '/quotes/random');
+    try {
+        const qotd = await sendApiRequest<Quote>('GET', '/quotes/random'); // TODO: change back to qotd once sufficiently tested
 
-    return json({
-        quote: qotd,
-    });
+        return json({
+            quote: qotd,
+        });
+    } catch (err) {
+        console.error('root#loader: Caught unexpected', err);
+        return json({ quote: undefined });
+    }
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
