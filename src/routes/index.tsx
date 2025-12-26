@@ -1,6 +1,7 @@
 import { Title } from "@solidjs/meta";
 import { Match, Switch } from "solid-js";
 import Counter from "~/components/Counter";
+import { Marked } from "~/components/Marked";
 import { Possibility, Random } from "~/components/Random";
 
 function A() {
