@@ -10,27 +10,16 @@ import {
   Suspense,
   Switch,
 } from "solid-js";
+import { apiFetch } from "~/api/fetch";
+import { Page } from "~/api/Page";
 import { DateTime } from "~/components/DateTime";
 import { Marked } from "~/components/Marked";
-import { Page } from "~/types/Page";
 
 export default function CatchAllPage() {
   const params = useParams();
   const [page] = createResource(
     () => params.page,
-    async (page) => {
-      const response = await fetch(`https://localhost:7072/pages/${page}`);
-
-      const json = await response.json();
-      if (!response.ok) {
-        throw new Error(
-          `The call to ${response.url} returned ${response.status} ${response.statusText}`,
-          { cause: json }
-        );
-      }
-
-      return json as Page;
-    }
+    (page) => apiFetch<Page>(`/pages/${page}`)
   );
 
   return (

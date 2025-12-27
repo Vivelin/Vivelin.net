@@ -4,6 +4,7 @@ import { FileRoutes } from "@solidjs/start/router";
 import { ErrorBoundary, Suspense } from "solid-js";
 import "./app.css";
 import { Nav } from "./components/Nav";
+import { RandomQuote } from "./components/quotes/RandomQuote";
 
 export default function App() {
   return (
@@ -23,6 +24,9 @@ function Layout(props: RouteSectionProps) {
       <ErrorBoundary fallback={<>???</>}>
         <Suspense>{props.children}</Suspense>
       </ErrorBoundary>
+      <footer>
+        <RandomQuote />
+      </footer>
     </MetaProvider>
   );
 }
