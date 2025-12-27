@@ -1,24 +1,28 @@
 import { MetaProvider, Title } from "@solidjs/meta";
-import { Router } from "@solidjs/router";
+import { Router, RouteSectionProps } from "@solidjs/router";
 import { FileRoutes } from "@solidjs/start/router";
-import { Suspense } from "solid-js";
+import { ErrorBoundary, Suspense } from "solid-js";
 import "./app.css";
+import { Nav } from "./components/Nav";
 
 export default function App() {
   return (
-    <Router
-      root={(props) => (
-        <MetaProvider>
-          <Title>SolidStart - Basic</Title>
-          <a href="/">Index</a>
-          <a href="/about">About</a>
-          <a href="/test">Test</a>
-          <a href="/cats">Cats</a>
-          <Suspense>{props.children}</Suspense>
-        </MetaProvider>
-      )}
-    >
+    <Router root={Layout}>
       <FileRoutes />
     </Router>
+  );
+}
+
+function Layout(props: RouteSectionProps) {
+  return (
+    <MetaProvider>
+      <Title>Vivelin.net</Title>
+      <header>
+        <Nav />
+      </header>
+      <ErrorBoundary fallback={<>???</>}>
+        <Suspense>{props.children}</Suspense>
+      </ErrorBoundary>
+    </MetaProvider>
   );
 }
