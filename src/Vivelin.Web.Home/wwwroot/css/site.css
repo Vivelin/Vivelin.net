@@ -227,6 +227,7 @@ ul.social {
     .site-title a:visited {
         color: var(--page-text);
         transition: color .3s ease-in;
+        text-decoration: none;
     }
 
         .site-title a:hover {
@@ -280,7 +281,7 @@ h3 {
 
 a {
     color: var(--page-accent);
-    text-decoration: none;
+    text-decoration: underline;
     transition: color .3s ease-in;
 }
 
@@ -296,6 +297,10 @@ a {
 
     a.autolink {
         word-break: break-all;
+    }
+
+    a[href^="#"] {
+        text-decoration: none;
     }
 
 code {
