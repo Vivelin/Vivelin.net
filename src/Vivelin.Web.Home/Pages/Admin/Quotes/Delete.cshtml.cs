@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+
 using Vivelin.Web.Data;
 
 namespace Vivelin.Web.Home.Pages.Admin.Quotes
@@ -19,16 +16,16 @@ namespace Vivelin.Web.Home.Pages.Admin.Quotes
         }
 
         [BindProperty]
-        public Quote Quote { get; set; }
+        public Quote? Quote { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int? id, CancellationToken cancellationToken)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            Quote = await _context.Quotes.FirstOrDefaultAsync(m => m.Id == id);
+            Quote = await _context.Quotes.FirstOrDefaultAsync(m => m.Id == id, cancellationToken);
 
             if (Quote == null)
             {
@@ -37,19 +34,19 @@ namespace Vivelin.Web.Home.Pages.Admin.Quotes
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(int? id)
+        public async Task<IActionResult> OnPostAsync(int? id, CancellationToken cancellationToken)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            Quote = await _context.Quotes.FindAsync(id);
+            Quote = await _context.Quotes.FindAsync([id], cancellationToken);
 
             if (Quote != null)
             {
                 _context.Quotes.Remove(Quote);
-                await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync(cancellationToken);
             }
 
             return RedirectToPage("./Index");

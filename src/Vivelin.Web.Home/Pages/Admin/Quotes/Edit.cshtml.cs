@@ -26,7 +26,7 @@ namespace Vivelin.Web.Home.Pages.Admin.Quotes
 
         public bool IsNew => Quote == null || Quote.Id == default;
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int? id, CancellationToken cancellationToken)
         {
             if (id == null)
             {
@@ -34,7 +34,7 @@ namespace Vivelin.Web.Home.Pages.Admin.Quotes
                 return Page();
             }
 
-            Quote = await _context.Quotes.SingleOrDefaultAsync(m => m.Id == id);
+            Quote = await _context.Quotes.SingleOrDefaultAsync(m => m.Id == id, cancellationToken);
             if (Quote == null)
             {
                 return NotFound();
@@ -45,7 +45,7 @@ namespace Vivelin.Web.Home.Pages.Admin.Quotes
         }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(CancellationToken cancellationToken)
         {
             if (IsNew)
             {
@@ -64,11 +64,11 @@ namespace Vivelin.Web.Home.Pages.Admin.Quotes
 
             try
             {
-                await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync(cancellationToken);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!await _context.Quotes.AnyAsync(e => e.Id == Quote.Id))
+                if (!await _context.Quotes.AnyAsync(e => e.Id == Quote.Id, cancellationToken))
                 {
                     return NotFound();
                 }
