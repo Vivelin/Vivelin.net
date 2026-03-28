@@ -1,20 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-using System;
+namespace Vivelin.Web.Data;
 
-namespace Vivelin.Web.Data
+public class DataContext(DbContextOptions options) : DbContext(options)
 {
-    public class DataContext : DbContext
+    public virtual DbSet<Quote> Quotes { get; set; } = null!;
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        public DataContext(DbContextOptions options)
-            : base(options)
-        {
-        }
-
-        public virtual DbSet<Quote> Quotes { get; set; } = null!;
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-        }
     }
 }
