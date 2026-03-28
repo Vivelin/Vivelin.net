@@ -1,22 +1,20 @@
-﻿using Microsoft.AspNetCore.Routing;
+﻿using System.Text.RegularExpressions;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+namespace Vivelin.Web.Home;
 
-namespace Vivelin.Web.Home
+internal partial class SlugParameterTransformer : IOutboundParameterTransformer
 {
-    internal class SlugParameterTransformer : IOutboundParameterTransformer
+    public string? TransformOutbound(object? value)
     {
-        public string? TransformOutbound(object? value)
+        if (value == null)
         {
-            if (value == null)
-                return null;
-
-            return Regex.Replace(value.ToString(), "([a-z])([A-Z])", "$1-$2")
-                        .ToLowerInvariant();
+            return null;
         }
+
+        return CamelCaseRegex().Replace(value.ToString() ?? "", "$1-$2")
+                    .ToLowerInvariant();
     }
+
+    [GeneratedRegex("([a-z])([A-Z])")]
+    private static partial Regex CamelCaseRegex();
 }

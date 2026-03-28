@@ -1,89 +1,86 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Net.Http.Json;
-using System.Security.Claims;
-using System.Text.Json;
-using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+
+using System.Net.Http.Headers;
+using System.Security.Claims;
+using System.Text.Json;
+
 using Vivelin.Web.Home.Models;
 using Vivelin.Web.Home.Twitch;
 
-namespace Vivelin.Web.Home.Pages
+namespace Vivelin.Web.Home.Pages;
+
+public class DashboardModel(IHttpClientFactory httpClientFactory,
+    IAuthenticationService authService) : PageModel
 {
-    public class DashboardModel : PageModel
+    private static readonly JsonSerializerOptions s_jsonSerializerOptions = new()
     {
-        private static readonly JsonSerializerOptions s_jsonSerializerOptions = new JsonSerializerOptions
-        {
-            PropertyNamingPolicy = SnakeCaseNamingPolicy.SnakeCase
-        };
+        PropertyNamingPolicy = SnakeCaseNamingPolicy.SnakeCase
+    };
 
-        private readonly HttpClient _httpClient;
-        private readonly IAuthenticationService _authService;
+    private readonly HttpClient _httpClient = httpClientFactory.CreateClient("api.twitch.tv");
 
-        public DashboardModel(IHttpClientFactory httpClientFactory,
-            IAuthenticationService authService)
+    public List<StreamInfo> Streams { get; set; } = [];
+
+    public string? ErrorMessage { get; set; }
+
+    public async Task<IActionResult> OnGetAsync(CancellationToken cancellationToken)
+    {
+        if (User.Identity is null || !User.Identity.IsAuthenticated)
         {
-            _httpClient = httpClientFactory.CreateClient("api.twitch.tv");
-            _authService = authService;
+            return Challenge();
         }
 
-        public List<StreamInfo> Streams { get; set; } = new List<StreamInfo>();
-
-        public string ErrorMessage { get; set; }
-
-        public async Task<IActionResult> OnGetAsync(CancellationToken cancellationToken)
+        var accessToken = await authService.GetTokenAsync(HttpContext, "access_token");
+        if (accessToken is null)
         {
-            if (!User.Identity.IsAuthenticated)
-                return Challenge();
-
-            var accessToken = await _authService.GetTokenAsync(HttpContext, "access_token");
-            if (accessToken == null)
-                return Forbid();
-
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var streams = await GetFromTwitchAsync<StreamsResponse>(
-                $"streams/followed?user_id={Uri.EscapeDataString(userId)}",
-                accessToken, cancellationToken);
-            if (streams.Data.Any())
-            {
-                var userIds = streams.Data.Select(x => x.UserId).Distinct().ToList();
-                if (userIds.Count > 100)
-                {
-                    ErrorMessage = "There are currently more than 100 users live.";
-                    return Page();
-                }
-
-                var usersQuery = string.Join("&id=", userIds);
-                var users = await GetFromTwitchAsync<UsersResponse>(
-                    $"users?id={usersQuery}", accessToken, cancellationToken);
-
-                Streams = StreamInfo.BuildList(streams.Data, users.Data);
-            }
-            return Page();
+            return Forbid();
         }
 
-        private async Task<T> GetFromTwitchAsync<T>(string requestUri, string accessToken, CancellationToken cancellationToken)
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        if (userId is null)
         {
-            var request = new HttpRequestMessage(HttpMethod.Get, requestUri);
-            request.Headers.Authorization = new AuthenticationHeaderValue(
-                "Bearer", accessToken);
+            return Forbid();
+        }
 
-            var response = await _httpClient.SendAsync(request, cancellationToken);
-            if (!response.IsSuccessStatusCode)
+        var streams = await GetFromTwitchAsync<StreamsResponse>(
+            $"streams/followed?user_id={Uri.EscapeDataString(userId)}",
+            accessToken, cancellationToken);
+        if (streams is not null && streams.Data.Count != 0)
+        {
+            var userIds = streams.Data.Select(x => x.UserId).Distinct().ToList();
+            if (userIds.Count > 100)
             {
-                var content = await response.Content.ReadAsStringAsync(cancellationToken);
-                throw new HttpRequestException($"The request to {request.RequestUri} " +
-                    $"returned a {(int)response.StatusCode} ({response.ReasonPhrase}). " +
-                    $"Response content:\n{content}", null, response.StatusCode);
+                ErrorMessage = "There are currently more than 100 users live.";
+                return Page();
             }
 
-            return await response.Content.ReadFromJsonAsync<T>(s_jsonSerializerOptions, cancellationToken);
+            string usersQuery = string.Join("&id=", userIds);
+            var users = await GetFromTwitchAsync<UsersResponse>(
+                $"users?id={usersQuery}", accessToken, cancellationToken);
+
+            Streams = StreamInfo.BuildList(streams.Data, users?.Data ?? []);
         }
+
+        return Page();
+    }
+
+    private async Task<T?> GetFromTwitchAsync<T>(string requestUri, string accessToken, CancellationToken cancellationToken)
+    {
+        var request = new HttpRequestMessage(HttpMethod.Get, requestUri);
+        request.Headers.Authorization = new AuthenticationHeaderValue(
+            "Bearer", accessToken);
+
+        var response = await _httpClient.SendAsync(request, cancellationToken);
+        if (!response.IsSuccessStatusCode)
+        {
+            string content = await response.Content.ReadAsStringAsync(cancellationToken);
+            throw new HttpRequestException($"The request to {request.RequestUri} " +
+                $"returned a {(int)response.StatusCode} ({response.ReasonPhrase}). " +
+                $"Response content:\n{content}", null, response.StatusCode);
+        }
+
+        return await response.Content.ReadFromJsonAsync<T>(s_jsonSerializerOptions, cancellationToken);
     }
 }
