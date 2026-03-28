@@ -1,83 +1,76 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 using Vivelin.Web.Data;
 
-namespace Vivelin.Web.Home.Pages.Admin.Quotes
+namespace Vivelin.Web.Home.Pages.Admin.Quotes;
+
+public class EditModel(DataContext context) : PageModel
 {
-    public class EditModel : PageModel
+    [BindProperty]
+    public Quote? Quote { get; set; }
+
+    public bool IsNew => Quote == null || Quote.Id == default;
+
+    public async Task<IActionResult> OnGetAsync(int? id, CancellationToken cancellationToken)
     {
-        private readonly Vivelin.Web.Data.DataContext _context;
-
-        public EditModel(Vivelin.Web.Data.DataContext context)
+        if (id == null)
         {
-            _context = context;
-        }
-
-        [BindProperty]
-        public Quote Quote { get; set; }
-
-        public bool IsNew => Quote == null || Quote.Id == default;
-
-        public async Task<IActionResult> OnGetAsync(int? id, CancellationToken cancellationToken)
-        {
-            if (id == null)
-            {
-                ViewData["Title"] = "Add quote";
-                return Page();
-            }
-
-            Quote = await _context.Quotes.SingleOrDefaultAsync(m => m.Id == id, cancellationToken);
-            if (Quote == null)
-            {
-                return NotFound();
-            }
-
-            ViewData["Title"] = "Edit quote";
+            ViewData["Title"] = "Add quote";
             return Page();
         }
 
-        // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
-        public async Task<IActionResult> OnPostAsync(CancellationToken cancellationToken)
+        Quote = await context.Quotes.SingleOrDefaultAsync(m => m.Id == id, cancellationToken);
+        if (Quote == null)
         {
-            if (IsNew)
-            {
-                ModelState["Quote.Id"].ValidationState = ModelValidationState.Skipped;
-            }
-
-            if (Quote == null || !ModelState.IsValid)
-            {
-                return Page();
-            }
-
-            if (Quote.Id == default)
-                _context.Quotes.Add(Quote);
-            else
-                _context.Attach(Quote).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync(cancellationToken);
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!await _context.Quotes.AnyAsync(e => e.Id == Quote.Id, cancellationToken))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-            return RedirectToPage("./Index");
+            return NotFound();
         }
+
+        ViewData["Title"] = "Edit quote";
+        return Page();
+    }
+
+    // To protect from overposting attacks, see
+    // https://aka.ms/RazorPagesCRUD
+    public async Task<IActionResult> OnPostAsync(CancellationToken cancellationToken)
+    {
+        if (IsNew)
+        {
+            ModelState["Quote.Id"]?.ValidationState = ModelValidationState.Skipped;
+        }
+
+        if (Quote == null || !ModelState.IsValid)
+        {
+            return Page();
+        }
+
+        if (Quote.Id == default)
+        {
+            context.Quotes.Add(Quote);
+        }
+        else
+        {
+            context.Attach(Quote).State = EntityState.Modified;
+        }
+
+        try
+        {
+            await context.SaveChangesAsync(cancellationToken);
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+            if (!await context.Quotes.AnyAsync(e => e.Id == Quote.Id, cancellationToken))
+            {
+                return NotFound();
+            }
+            else
+            {
+                throw;
+            }
+        }
+
+        return RedirectToPage("./Index");
     }
 }
