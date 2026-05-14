@@ -53,11 +53,9 @@ public class Startup(IConfiguration configuration)
                 };
             });
 
-        services.AddAuthorization(options =>
-        {
-            options.AddPolicy("Admin", policy => policy.RequireUserName("vivelin"));
-            options.InvokeHandlersAfterFailure = false;
-        });
+        services.AddAuthorizationBuilder()
+            .AddPolicy("Admin", policy => policy.RequireUserName("vivelin"))
+            .SetInvokeHandlersAfterFailure(false);
 
         services.AddRazorPages(o =>
         {
