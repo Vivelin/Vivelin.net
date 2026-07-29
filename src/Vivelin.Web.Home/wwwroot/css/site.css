@@ -383,6 +383,22 @@ blockquote p:first-child {
         content: '—';
     }
 
+    .quote figcaption a.open {
+        font-style: normal;
+        font-size: .8em;
+        margin-left: 0.5rem;
+    }
+
+.quote:not(:hover) figcaption a.open {
+    display: block;
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
 .dialog p {
     margin: 0;
 }

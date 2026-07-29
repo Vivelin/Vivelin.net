@@ -26,11 +26,11 @@ public static class Program
             });
     }
 
-    private static Task MigrateDatabaseAsync(IServiceScope serviceScope)
+    private static async Task MigrateDatabaseAsync(IServiceScope serviceScope)
     {
         IHostApplicationLifetime lifetime = serviceScope.ServiceProvider.GetRequiredService<IHostApplicationLifetime>();
         DataContext context = serviceScope.ServiceProvider.GetRequiredService<DataContext>();
 
-        return context.Database.MigrateAsync(lifetime.ApplicationStopping);
+        await context.Database.MigrateAsync(lifetime.ApplicationStopping).ConfigureAwait(false);
     }
 }

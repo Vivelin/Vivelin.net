@@ -1,0 +1,9 @@
+﻿@page "{id:int}"
+@model Vivelin.Web.Home.Pages.QuoteModel
+
+<h1>Quote #@Model.Quote.Id</h1>
+
+<component type="typeof(Vivelin.Web.Home.Shared.QuoteDisplay)"
+           render-mode="Static"
+           param-id="Model.Quote.Id"
+           param-quote="Model.Quote"/>
