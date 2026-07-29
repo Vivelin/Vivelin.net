@@ -35,6 +35,10 @@
             {
                 <text>, @Quote.PageNumber</text>
             }
+            @if (Id == null)
+            {
+                <a href="/quotes/@Quote.Id" target="_blank" class="open">Open in new tab</a>
+            }
         </figcaption>
     </figure>
 }
